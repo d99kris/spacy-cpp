@@ -1,0 +1,22 @@
+language:
+  - cpp
+
+os:
+  - linux
+
+addons:
+  apt:
+    packages:
+      - libpython2.7-dev
+
+install:
+  - pip install -U spacy
+  - python -m spacy download en_core_web_sm
+
+script:
+  - mkdir -p build
+  - cd build
+  - cmake ..
+  - make -s
+  - ctest --output-on-failure 
+
