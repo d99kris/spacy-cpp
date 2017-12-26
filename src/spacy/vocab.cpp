@@ -22,8 +22,7 @@ namespace Spacy
 
   StringStore Vocab::strings()
   {
-    PyObjectPtr strings(Python::get_attr_value<PyObjectPtr>(m_vocab, "strings"));
-    return StringStore(strings);
+    return StringStore(Python::get_attr_value<PyObjectPtr>(m_vocab, "strings"));
   }
 
   Vocab::Vocab(PyObjectPtr p_vocab)

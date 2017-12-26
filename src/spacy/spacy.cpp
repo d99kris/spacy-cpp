@@ -50,8 +50,7 @@ namespace Spacy
   {
     if (!m_attrs)
     {
-      PyObjectPtr attrs(Python::get_attr_value<PyObjectPtr>(m_spacy, "attrs"));
-      m_attrs.reset(new Attrs(attrs));
+      m_attrs.reset(new Attrs(Python::get_attr_value<PyObjectPtr>(m_spacy, "attrs")));
     }
     return *m_attrs;
   }

@@ -32,8 +32,7 @@ namespace Spacy
 
   Vocab Nlp::vocab()
   {
-    PyObjectPtr vocab(Python::get_attr_value<PyObjectPtr>(m_nlp, "vocab"));
-    return Vocab(vocab);
+    return Vocab(PyObjectPtr(Python::get_attr_value<PyObjectPtr>(m_nlp, "vocab")));
   }
 
   Nlp::Nlp(PyObjectPtr p_nlp)
