@@ -4,6 +4,9 @@ language:
 os:
   - linux
 
+dist:
+  - xenial
+
 addons:
   apt:
     packages:
