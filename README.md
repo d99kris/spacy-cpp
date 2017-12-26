@@ -177,7 +177,7 @@ Supports the following methods / attributes:
 - like_url()
 - lower()
 - lower_()
-- nbor(long
+- nbor()
 - norm()
 - norm_()
 - orth()
