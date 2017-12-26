@@ -4,16 +4,13 @@ language:
 os:
   - linux
 
-dist:
-  - xenial
-
 addons:
   apt:
     packages:
       - libpython2.7-dev
 
 install:
-  - pip install -U spacy
+  - pip install --user -U spacy
   - python -m spacy download en_core_web_sm
 
 script:
