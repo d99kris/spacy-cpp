@@ -1,6 +1,9 @@
 language:
   - cpp
 
+sudo:
+  - true
+
 os:
   - linux
 
@@ -10,8 +13,8 @@ addons:
       - libpython2.7-dev
 
 install:
-  - pip install --user -U spacy
-  - python -m spacy download en_core_web_sm
+  - sudo pip install -U spacy
+  - sudo python -m spacy download en_core_web_sm
 
 script:
   - mkdir -p build
