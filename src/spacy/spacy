@@ -1,0 +1,22 @@
+// spacy
+//
+// URL:      https://github.com/d99kris/spacy-cpp
+//
+// Copyright (C) 2017 Kristofer Berggren
+// All rights reserved.
+//
+// spacy-cpp is distributed under the MIT license, see LICENSE for details.
+
+#pragma once
+
+#include "attrs.h"
+#include "doc.h"
+#include "nlp.h"
+#include "pyobjectptr.h"
+#include "python.h"
+#include "spacy.h"
+#include "span.h"
+#include "stringstore.h"
+#include "token.h"
+#include "vocab.h"
+
