@@ -85,14 +85,14 @@ Spacy-cpp is under development and does not support the complete spaCy API yet.
 
 Supported Classes
 -----------------
-[Attrs](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/attrs.h)
-[Doc](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/doc.h)
-[Nlp](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/nlp.h)
-[Spacy](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/spacy.h)
-[Span](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/span.h)
-[StringStore](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/stringstore.h)
-[Token](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/token.h)
-[Vocab](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/vocab.h)
+- [Attrs](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/attrs.h)
+- [Doc](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/doc.h)
+- [Nlp](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/nlp.h)
+- [Spacy](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/spacy.h)
+- [Span](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/span.h)
+- [StringStore](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/stringstore.h)
+- [Token](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/token.h)
+- [Vocab](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/vocab.h)
 
 Supported Methods / Attributes
 ------------------------------
