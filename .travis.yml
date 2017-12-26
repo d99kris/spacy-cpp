@@ -19,3 +19,4 @@ script:
   - cmake ..
   - make -s
   - ctest --output-on-failure 
+
