@@ -1,10 +1,12 @@
 Spacy-cpp
 =========
 Spacy-cpp is a C++ wrapper library for the excellent NLP library [spaCy](https://spacy.io/).
-This project is not affiliated with spaCy, but is distributed under the same license (MIT).
-The goal is to expose the functionality of spaCy to C++ applications, and to provide an API
-that is very similar to that of spaCy, enabling rapid development in Python and simple porting
+This project is not affiliated with spaCy, but it is distributed under the same license (MIT).
+
+The goal of spacy-cpp is to expose the functionality of spaCy to C++ applications, and to provide
+an API that is similar to that of spaCy, enabling rapid development in Python and simple porting
 to C++.
+
 Spacy-cpp is under development and does not support all API's of spaCy, refer to API Documentation below.
 
 
@@ -12,20 +14,20 @@ Example Usage
 =============
 Simple POS tagging example using spacy-cpp:
 ```cpp
-    Spacy::Spacy spacy;
-    auto nlp = spacy.load("en_core_web_sm");
-    auto doc = nlp.parse("This is a sentence.");
-    for (auto& token : doc.tokens())
-        std::cout << token.text() << " [" << token.pos_() << "]\n";
+Spacy::Spacy spacy;
+auto nlp = spacy.load("en_core_web_sm");
+auto doc = nlp.parse("This is a sentence.");
+for (auto& token : doc.tokens())
+    std::cout << token.text() << " [" << token.pos_() << "]\n";
 ```
 
 For reference - doing the same using the spaCy API in Python:
 ```python
-    import spacy
-    nlp = spacy.load("en_core_web_sm")
-    doc = nlp(u"This is a sentence.")
-    for token in doc:
-        print token.text + " [" + token.pos_ + "]"
+import spacy
+nlp = spacy.load("en_core_web_sm")
+doc = nlp(u"This is a sentence.")
+for token in doc:
+    print token.text + " [" + token.pos_ + "]"
 ```
 
 
@@ -37,23 +39,24 @@ Spacy-cpp is implemented using C++11 with the intention of being portable. It's 
 
 Pre-requisites
 ==============
-Spacy-cpp requires spaCy, typically a spaCy model and libpython.
+Spacy-cpp requires libpython, spaCy and typically a spaCy model.
 
 Ubuntu
 ------
-Install spaCy and a small english model:
-
-    pip install -U spacy
-    python -m spacy download en_core_web_sm
 
 Install libpython 2.7:
 
     sudo apt install libpython2.7-dev
 
+Install spaCy and an English model:
+
+    pip install -U spacy
+    python -m spacy download en_core_web_sm
+
 
 Installation
 ============
-Spacy-cpp supports both being used as a shared library, and as a header-only library.
+Spacy-cpp can be used either as a shared library or as a header-only library.
 
 Shared Library
 --------------
@@ -65,7 +68,7 @@ Link library:
 
     -lspacy
 
-Include header (convenience header including modules):
+Include header (convenience header including all modules):
 
     #include <spacy/spacy>
 
@@ -205,7 +208,7 @@ Key Differences with spaCy
    Nlp::parse().
 2. In spacy-cpp Doc is not an iterable, instead one need to use Doc::token() to get a std::vector of the
    tokens in the Doc. Likewise for Span.
-3. In spacy-cpp non-ASCII strings must be UTF-8 encoded, in order to be correctly processed.
+3. In spacy-cpp non-ASCII strings must be UTF-8 encoded in order to be correctly processed.
 
 
 Technical Details
