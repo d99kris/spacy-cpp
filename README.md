@@ -12,7 +12,8 @@ The goal of spacy-cpp is to expose the functionality of spaCy to C++ application
 an API that is similar to that of spaCy, enabling rapid development in Python and simple porting
 to C++.
 
-Spacy-cpp is under development and does not support all API's of spaCy, refer to API Documentation below.
+Spacy-cpp is under development and does not yet support all API's of spaCy, refer
+to the API Documentation section below.
 
 
 Example Usage
@@ -38,7 +39,7 @@ for token in doc:
 
 Supported Platforms
 ===================
-Spacy-cpp is implemented using C++11 with the intention of being portable. It's been tested on:
+Spacy-cpp is implemented using C++11 with the intention of being portable. It's however only been tested on:
 - Linux / Ubuntu 16.04 LTS
 
 
@@ -104,11 +105,9 @@ Supported Classes
 
 Supported Methods / Attributes
 ------------------------------
-**Attrs**
-Supports all attribute constants.
+**Attrs** supports all attribute constants.
 
-**Doc**
-Supports the following methods / attributes:
+**Doc** supports the following methods / attributes:
 - count_by()
 - ents()
 - has_vector()
@@ -123,18 +122,15 @@ Supports the following methods / attributes:
 - tokens()
 - vector_norm()
 
-**Nlp**
-Supports the following methods / attributes:
+**Nlp** supports the following methods / attributes:
 - parse()
 - vocab()
 
-**Spacy**
-Supports the following methods / attributes:
+**Spacy** supports the following methods / attributes:
 - load()
 - attrs()
 
-**Span**
-Supports the following methods / attributes:
+**Span** supports the following methods / attributes:
 - doc()
 - label()
 - label_()
@@ -147,12 +143,10 @@ Supports the following methods / attributes:
 - tokens()
 - vector_norm()
 
-**StringStore**
-Supports the following methods / attributes:
+**StringStore** supports the following methods / attributes:
 - add()
 
-**Token**
-Supports the following methods / attributes:
+**Token** supports the following methods / attributes:
 - check_flag()
 - children()
 - cluster()
@@ -203,8 +197,7 @@ Supports the following methods / attributes:
 - text_with_ws()
 - whitespace_()
 
-**Vocab**
-Supports the following methods / attributes:
+**Vocab** supports the following methods / attributes:
 - strings()
 
 Key Differences with spaCy
@@ -218,7 +211,7 @@ Key Differences with spaCy
 
 Technical Details
 =================
-Spacy-cpp uses cmake for its tests. Commands to execute the test suite:
+Spacy-cpp uses cmake for its tests. Commands to build and execute the test suite:
 
     mkdir -p build && cd build && cmake .. && make && ctest --output-on-failure ; cd -
 
