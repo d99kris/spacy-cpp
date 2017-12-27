@@ -26,8 +26,8 @@ namespace Spacy
   public:
     virtual ~Nlp();
 
-    Doc parse(const std::string& p_text);
-    Vocab vocab();
+    Doc parse(const std::string& p_text) const;
+    Vocab vocab() const;
 
   private:
     Nlp(PyObjectPtr p_nlp);

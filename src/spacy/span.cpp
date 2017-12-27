@@ -22,57 +22,57 @@ namespace Spacy
   {
   }
 
-  Doc* Span::doc()
+  Doc* Span::doc() const
   {
     return m_parent;
   }
 
-  long Span::label()
+  long Span::label() const
   {
     return Python::get_attr_value<long>(m_span, "label");
   }
     
-  std::string Span::label_()
+  std::string Span::label_() const
   {
     return Python::get_attr_value<std::string>(m_span, "label_");
   }
 
-  std::string Span::lemma_()
+  std::string Span::lemma_() const
   {
     return Python::get_attr_value<std::string>(m_span, "lemma_");
   }
 
-  std::string Span::orth_()
+  std::string Span::orth_() const
   {
     return Python::get_attr_value<std::string>(m_span, "orth_");
   }
 
-  Token Span::root()
+  Token Span::root() const
   {
     return Token(Python::get_attr_value<PyObjectPtr>(m_span, "root"));
   }
 
-  double Span::sentiment()
+  double Span::sentiment() const
   {
     return Python::get_attr_value<double>(m_span, "sentiment");
   }
 
-  std::string Span::text()
+  std::string Span::text() const
   {
     return Python::get_attr_value<std::string>(m_span, "text");
   }
 
-  std::string Span::text_with_ws()
+  std::string Span::text_with_ws() const
   {
     return Python::get_attr_value<std::string>(m_span, "text_with_ws");
   }
 
-  std::vector<Token> Span::tokens()
+  std::vector<Token> Span::tokens() const
   {
     return Python::get_vector<Token>(m_span);
   }
 
-  double Span::vector_norm()
+  double Span::vector_norm() const
   {
     return Python::get_attr_value<double>(m_span, "vector_norm");
   }

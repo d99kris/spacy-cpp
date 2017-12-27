@@ -24,7 +24,7 @@ namespace Spacy
   {
   }
 
-  std::map<long, long> Doc::count_by(long p_attr)
+  std::map<long, long> Doc::count_by(long p_attr) const
   {
     PyObjectPtr attr(Python::get_object<long>(p_attr));
     std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({attr});
@@ -32,73 +32,69 @@ namespace Spacy
     return Python::get_map<long, long>(result);
   }
 
-  //Span Doc::ents()
-  //{
-  //  return Span(Python::get_attr_value<PyObjectPtr>(m_doc, "ents"), this);
-  //}
-  std::vector<Span> Doc::ents()
+  std::vector<Span> Doc::ents() const
   {
     std::vector<Span> spans(Python::get_attr_vector<Span>(m_doc, "ents"));
     std::for_each(spans.begin(), spans.end(), std::bind2nd(std::mem_fun_ref(&Span::set_parent), this));
     return spans;
   }
 
-  bool Doc::has_vector()
+  bool Doc::has_vector() const
   {
     return Python::get_attr_value<bool>(m_doc, "has_vector");
   }
 
-  bool Doc::is_parsed()
+  bool Doc::is_parsed() const
   {
     return Python::get_attr_value<bool>(m_doc, "is_parsed");
   }
 
-  bool Doc::is_tagged()
+  bool Doc::is_tagged() const
   {
     return Python::get_attr_value<bool>(m_doc, "is_tagged");
   }
 
-  std::vector<Span> Doc::noun_chunks()
+  std::vector<Span> Doc::noun_chunks() const
   {
     std::vector<Span> spans(Python::get_attr_vector<Span>(m_doc, "noun_chunks"));
     std::for_each(spans.begin(), spans.end(), std::bind2nd(std::mem_fun_ref(&Span::set_parent), this));
     return spans;
   }
 
-  double Doc::sentiment()
+  double Doc::sentiment() const
   {
     return Python::get_attr_value<double>(m_doc, "sentiment");
   }
 
-  std::vector<Span> Doc::sents()
+  std::vector<Span> Doc::sents() const
   {
     std::vector<Span> spans(Python::get_attr_vector<Span>(m_doc, "sents"));
     std::for_each(spans.begin(), spans.end(), std::bind2nd(std::mem_fun_ref(&Span::set_parent), this));
     return spans;
   }
 
-  double Doc::similarity(const Doc& p_doc)
+  double Doc::similarity(const Doc& p_doc) const
   {
     std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({p_doc.get_ptr()});
     return Python::call_method<double>(m_doc, "similarity", args);
   }
 
-  std::string Doc::text()
+  std::string Doc::text() const
   {
     return Python::get_attr_value<std::string>(m_doc, "text");
   }
 
-  std::string Doc::text_with_ws()
+  std::string Doc::text_with_ws() const
   {
     return Python::get_attr_value<std::string>(m_doc, "text_with_ws");
   }
 
-  std::vector<Token> Doc::tokens()
+  std::vector<Token> Doc::tokens() const
   {
     return Python::get_vector<Token>(m_doc);
   }
 
-  double Doc::vector_norm()
+  double Doc::vector_norm() const
   {
     return Python::get_attr_value<double>(m_doc, "vector_norm");
   }

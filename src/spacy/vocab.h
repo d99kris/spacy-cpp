@@ -25,7 +25,7 @@ namespace Spacy
   public:
     virtual ~Vocab();
 
-    StringStore strings();
+    StringStore strings() const;
 
   private:
     Vocab(PyObjectPtr p_vocab);

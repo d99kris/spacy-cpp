@@ -27,19 +27,19 @@ namespace Spacy
   public:
     virtual ~Doc();
 
-    std::map<long, long> count_by(long p_attr);
-    std::vector<Span> ents();
-    bool has_vector();
-    bool is_parsed();
-    bool is_tagged();
-    std::vector<Span> noun_chunks();
-    double sentiment();
-    std::vector<Span> sents();
-    double similarity(const Doc& p_doc);
-    std::string text();
-    std::string text_with_ws();
-    std::vector<Token> tokens();
-    double vector_norm();
+    std::map<long, long> count_by(long p_attr) const;
+    std::vector<Span> ents() const;
+    bool has_vector() const;
+    bool is_parsed() const;
+    bool is_tagged() const;
+    std::vector<Span> noun_chunks() const;
+    double sentiment() const;
+    std::vector<Span> sents() const;
+    double similarity(const Doc& p_doc) const;
+    std::string text() const;
+    std::string text_with_ws() const;
+    std::vector<Token> tokens() const;
+    double vector_norm() const;
     
   private:
     Doc(PyObjectPtr p_doc);

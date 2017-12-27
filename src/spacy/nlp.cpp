@@ -22,7 +22,7 @@ namespace Spacy
   {
   }
 
-  Doc Nlp::parse(const std::string& p_text)
+  Doc Nlp::parse(const std::string& p_text) const
   {
     PyObjectPtr text(Python::get_object<std::string>(p_text));
     std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({text});
@@ -30,7 +30,7 @@ namespace Spacy
     return Doc(doc);
   }
 
-  Vocab Nlp::vocab()
+  Vocab Nlp::vocab() const
   {
     return Vocab(PyObjectPtr(Python::get_attr_value<PyObjectPtr>(m_nlp, "vocab")));
   }

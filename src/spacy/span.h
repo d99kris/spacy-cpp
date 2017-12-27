@@ -28,17 +28,17 @@ namespace Spacy
   public:
     virtual ~Span();
 
-    Doc* doc();
-    long label();
-    std::string label_();
-    std::string lemma_();
-    std::string orth_();
-    Token root();
-    double sentiment();
-    std::string text();
-    std::string text_with_ws();
-    std::vector<Token> tokens();
-    double vector_norm();
+    Doc* doc() const;
+    long label() const;
+    std::string label_() const;
+    std::string lemma_() const;
+    std::string orth_() const;
+    Token root() const;
+    double sentiment() const;
+    std::string text() const;
+    std::string text_with_ws() const;
+    std::vector<Token> tokens() const;
+    double vector_norm() const;
     
   private:
     Span(PyObjectPtr p_span, Doc* p_parent = nullptr);

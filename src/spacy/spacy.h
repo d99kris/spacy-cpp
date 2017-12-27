@@ -26,7 +26,7 @@ namespace Spacy
     Spacy();
     virtual ~Spacy();
     
-    Nlp load(const std::string& p_model);
+    Nlp load(const std::string& p_model) const;
     const Attrs& attrs();
 
   private:

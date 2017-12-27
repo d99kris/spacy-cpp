@@ -24,7 +24,7 @@ namespace Spacy
   public:
     virtual ~StringStore();
 
-    long add(const std::string& p_str);
+    long add(const std::string& p_str) const;
 
   private:
     StringStore(PyObjectPtr p_stringstore);

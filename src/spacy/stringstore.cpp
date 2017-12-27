@@ -19,7 +19,7 @@ namespace Spacy
   {
   }
 
-  long StringStore::add(const std::string& p_str)
+  long StringStore::add(const std::string& p_str) const
   {
     PyObjectPtr str(Python::get_object<std::string>(p_str));
     std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({str});
