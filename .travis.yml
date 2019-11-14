@@ -16,9 +16,9 @@ addons:
       - libpython2.7-dev
 
 install:
-  - pip install -U spacy
-  - pip install -U --upgrade cryptography
-  - python -m spacy download en_core_web_sm
+  - sudo pip install -U spacy
+  - sudo pip install -U --upgrade cryptography
+  - sudo python -m spacy download en_core_web_sm
 
 script:
   - mkdir -p build
