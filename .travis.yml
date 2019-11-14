@@ -14,6 +14,7 @@ addons:
 
 install:
   - sudo pip install -U spacy
+  - sudo pip install --upgrade cryptography
   - sudo python -m spacy download en_core_web_sm
 
 script:
