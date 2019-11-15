@@ -142,7 +142,9 @@ namespace Spacy
         assert(0);
       }
   };
-    
+
+  static bool Custom_PyFloat_Check(PyObjectPtr p_obj);
+
   private:
     std::shared_ptr<char*> m_argv;
   };

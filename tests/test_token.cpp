@@ -330,7 +330,7 @@ int main()
       Spacy::Token back = doc.tokens().at(2);
       unittest::ExpectEqual(std::string, give.pos_(), "VERB");
       unittest::ExpectEqual(std::string, it.pos_(), "PRON");
-      unittest::ExpectEqual(std::string, back.pos_(), "PART");
+      unittest::ExpectEqual(std::string, back.pos_(), "ADV");
     }
 
     // Token::prob
@@ -385,7 +385,7 @@ int main()
       Spacy::Token back = doc.tokens().at(2);
       unittest::ExpectEqual(std::string, give.tag_(), "VB");
       unittest::ExpectEqual(std::string, it.tag_(), "PRP");
-      unittest::ExpectEqual(std::string, back.tag_(), "RP");
+      unittest::ExpectEqual(std::string, back.tag_(), "RB");
     }
 
     // Token::text

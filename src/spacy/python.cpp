@@ -48,7 +48,7 @@ namespace Spacy
   template <>
   double Python::Convert<double>::get_value(PyObjectPtr p_obj)
   {
-    assert(PyFloat_Check(p_obj.get()));
+    assert(Custom_PyFloat_Check(p_obj));
     return PyFloat_AsDouble(p_obj.get());
   }
 
@@ -111,5 +111,19 @@ namespace Spacy
   PyObjectPtr Python::Convert<std::string>::get_object(std::string p_val)
   {
     return PyObjectPtr(PyUnicode_FromStringAndSize(p_val.c_str(), p_val.size()));
+  }
+
+  bool Python::Custom_PyFloat_Check(PyObjectPtr p_obj)
+  {
+    if (PyFloat_Check(p_obj.get()))
+    {
+      return true;
+    }
+    else
+    {
+      PyObjectPtr __float__(PyObject_HasAttrString(p_obj.get(), "__float__") ?
+                            PyObject_GetAttrString(p_obj.get(), "__float__") : nullptr);
+      return (__float__.get() != nullptr) ? PyCallable_Check(__float__.get()) : false;
+    }
   }
 }
