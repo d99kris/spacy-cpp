@@ -3,7 +3,7 @@ Spacy-cpp
 
 | **Linux** |
 |-----------|
-| [![Build status](https://travis-ci.org/d99kris/spacy-cpp.svg?branch=master)](https://travis-ci.org/d99kris/spacy-cpp) |
+| [![Build status](https://travis-ci.com/d99kris/spacy-cpp.svg?branch=master)](https://travis-ci.com/d99kris/spacy-cpp) |
 
 Spacy-cpp is a C++ wrapper library for the excellent NLP library [spaCy](https://spacy.io/).
 This project is not affiliated with spaCy, but it is distributed under the same license (MIT).
