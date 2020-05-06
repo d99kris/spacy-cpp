@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2020 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -32,7 +32,11 @@ namespace Spacy
   }
 
   Python::Python()
+#if (PY_MAJOR_VERSION >= 3)
+    : m_argv(std::make_shared<wchar_t*>(nullptr))
+#else
     : m_argv(std::make_shared<char*>(nullptr))
+#endif
   {
     Py_Initialize();
     PySys_SetArgv(0, m_argv.get());
@@ -55,7 +59,11 @@ namespace Spacy
   template <>
   long Python::Convert<long>::get_value(PyObjectPtr p_obj)
   {
+#if (PY_MAJOR_VERSION >= 3)
+    assert(PyLong_Check(p_obj.get()));
+#else
     assert(PyLong_Check(p_obj.get()) || PyInt_Check(p_obj.get()));
+#endif
     return PyLong_AsLong(p_obj.get());
   }
 
@@ -98,7 +106,11 @@ namespace Spacy
   template <>
   PyObjectPtr Python::Convert<long>::get_object(long p_val)
   {
+#if (PY_MAJOR_VERSION >= 3)
+    return PyObjectPtr(PyLong_FromLong(p_val));
+#else
     return PyObjectPtr(PyInt_FromLong(p_val));
+#endif
   }
 
   template <>

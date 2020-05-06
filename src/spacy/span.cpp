@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2020 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -22,7 +22,7 @@ namespace Spacy
   {
   }
 
-  Doc* Span::doc() const
+  const Doc* Span::doc() const
   {
     return m_parent;
   }
@@ -77,7 +77,7 @@ namespace Spacy
     return Python::get_attr_value<double>(m_span, "vector_norm");
   }
 
-  Span::Span(PyObjectPtr p_span, Doc* p_parent /* = nullptr */)
+  Span::Span(PyObjectPtr p_span, const Doc* p_parent /* = nullptr */)
     : m_span(p_span)
     , m_parent(p_parent)
   {

@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2020 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -11,6 +11,7 @@
 
 #include <map>
 #include <memory>
+#include <string>
 #include <vector>
 #include <Python.h>
 
@@ -74,6 +75,14 @@ namespace Spacy
     }
 
     template <typename T, typename U>
+    static std::vector<T> get_attr_vector_ctor_arg(PyObjectPtr p_obj, const std::string& p_attr, U p_arg)
+    {
+      assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));
+      PyObjectPtr attr(PyObject_GetAttrString(p_obj.get(), p_attr.c_str()));
+      return get_vector_ctor_arg<T, U>(attr, p_arg);
+    }
+
+    template <typename T, typename U>
     static std::map<T, U> get_map(PyObjectPtr p_obj)
     {
       assert(PyDict_Check(p_obj.get()));
@@ -116,6 +125,20 @@ namespace Spacy
       return items;
     }
 
+    template <typename T, typename U>
+    static std::vector<T> get_vector_ctor_arg(PyObjectPtr p_obj, U p_arg)
+    {
+      assert(PySequence_Check(p_obj.get()) || PyIter_Check(p_obj.get()));
+      PyObjectPtr list(PySequence_List(p_obj.get()));
+      Py_ssize_t size = PySequence_Size(list.get());
+      std::vector<T> items;
+      for (Py_ssize_t i = 0; i < size; ++i)
+      {
+        items.push_back(T(PyObjectPtr(PySequence_GetItem(list.get(), i)), p_arg));
+      }
+      return items;
+    }
+
     static PyObjectPtr import(const std::string& p_name)
     {
       PyObjectPtr name(Python::get_object<std::string>(p_name));
@@ -146,7 +169,11 @@ namespace Spacy
   static bool Custom_PyFloat_Check(PyObjectPtr p_obj);
 
   private:
+#if (PY_MAJOR_VERSION >= 3)
+    std::shared_ptr<wchar_t*> m_argv;
+#else
     std::shared_ptr<char*> m_argv;
+#endif
   };
 
   template <>

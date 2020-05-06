@@ -6,19 +6,33 @@ sudo:
 
 os:
   - linux
+  - osx
 
 dist:
   - bionic
 
+osx_image:
+  - xcode11
+
 addons:
   apt:
     packages:
-      - libpython2.7-dev
+      - cmake
+      - python3-pip
+      - libpython3-dev
+  brew:
+    packages:
+      - cmake
+      - python
 
 install:
-  - sudo pip install -U spacy
-  - sudo pip install -U --upgrade cryptography
-  - sudo python -m spacy download en_core_web_sm
+  - which python
+  - python --version
+  - which python3
+  - python3 --version
+  - pip3 install -U spacy
+  - pip3 install -U --upgrade cryptography
+  - sudo python3 -m spacy download en_core_web_sm
 
 script:
   - mkdir -p build

@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2020 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -34,8 +34,7 @@ namespace Spacy
 
   std::vector<Span> Doc::ents() const
   {
-    std::vector<Span> spans(Python::get_attr_vector<Span>(m_doc, "ents"));
-    std::for_each(spans.begin(), spans.end(), std::bind2nd(std::mem_fun_ref(&Span::set_parent), this));
+    std::vector<Span> spans(Python::get_attr_vector_ctor_arg<Span, const Doc*>(m_doc, "ents", this));
     return spans;
   }
 
@@ -56,8 +55,7 @@ namespace Spacy
 
   std::vector<Span> Doc::noun_chunks() const
   {
-    std::vector<Span> spans(Python::get_attr_vector<Span>(m_doc, "noun_chunks"));
-    std::for_each(spans.begin(), spans.end(), std::bind2nd(std::mem_fun_ref(&Span::set_parent), this));
+    std::vector<Span> spans(Python::get_attr_vector_ctor_arg<Span, const Doc*>(m_doc, "noun_chunks", this));
     return spans;
   }
 
@@ -68,8 +66,7 @@ namespace Spacy
 
   std::vector<Span> Doc::sents() const
   {
-    std::vector<Span> spans(Python::get_attr_vector<Span>(m_doc, "sents"));
-    std::for_each(spans.begin(), spans.end(), std::bind2nd(std::mem_fun_ref(&Span::set_parent), this));
+    std::vector<Span> spans(Python::get_attr_vector_ctor_arg<Span, const Doc*>(m_doc, "sents", this));
     return spans;
   }
 

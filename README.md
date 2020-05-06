@@ -1,8 +1,8 @@
 Spacy-cpp
 =========
 
-| **Linux** |
-|-----------|
+| **Linux + Mac** |
+|-----------------|
 | [![Build status](https://travis-ci.com/d99kris/spacy-cpp.svg?branch=master)](https://travis-ci.com/d99kris/spacy-cpp) |
 
 Spacy-cpp is a C++ wrapper library for the excellent NLP library [spaCy](https://spacy.io/).
@@ -12,8 +12,8 @@ The goal of spacy-cpp is to expose the functionality of spaCy to C++ application
 an API that is similar to that of spaCy, enabling rapid development in Python and simple porting
 to C++.
 
-Spacy-cpp is under development and does not yet support all API's of spaCy, refer
-to the API Documentation section below.
+Spacy-cpp is under development and does not yet support all API's of spaCy, refer to the
+API Documentation section below.
 
 
 Example Usage
@@ -39,25 +39,39 @@ for token in doc:
 
 Supported Platforms
 ===================
-Spacy-cpp is implemented using C++11 with the intention of being portable. It's however only been tested on:
-- Linux / Ubuntu 16.04 LTS
+Spacy-cpp is implemented using C++11 with the intention of being portable. Current version has been
+tested on:
+- macOS 10.15 Catalina
+- Ubuntu 20.04 LTS
 
 
 Pre-requisites
 ==============
-Spacy-cpp requires libpython, spaCy and typically a spaCy model.
+Spacy-cpp requires python development library, pip, spaCy and typically a spaCy model.
 
-Ubuntu
-------
+macOS
+-----
+Install build dependencies:
 
-Install libpython 2.7:
-
-    sudo apt install libpython2.7-dev
+    brew install cmake python
 
 Install spaCy and an English model:
 
-    pip install -U spacy
-    python -m spacy download en_core_web_sm
+    pip3 install -U spacy
+    python3 -m spacy download en_core_web_sm
+
+Ubuntu
+------
+Install build dependencies:
+
+    sudo apt install cmake python3-pip libpython3-dev
+
+Install spaCy and an English model (if the python3 command fails with segmentation fault,
+it could be this bug https://github.com/explosion/spaCy/issues/4838 and a possible workaround
+is to call the prepend command with `sudo`):
+
+    pip3 install -U spacy
+    python3 -m spacy download en_core_web_sm
 
 
 Installation
@@ -214,6 +228,7 @@ Technical Details
 Spacy-cpp uses cmake for its tests. Commands to build and execute the test suite:
 
     mkdir -p build && cd build && cmake .. && make && ctest --output-on-failure ; cd -
+
 
 License
 =======
