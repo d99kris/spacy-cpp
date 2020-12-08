@@ -70,12 +70,12 @@ if [[ "${DEPS}" == "1" ]]; then
   if [ "${OS}" == "Linux" ]; then
     DISTRO="$(lsb_release -i | awk -F':\t' '{print $2}')"
     if [[ "${DISTRO}" == "Ubuntu" ]]; then
-      sudo apt -y install git cmake build-essential python3-pip libpython3-dev python3-setuptools && pip3 install -U spacy && pip3 install -U --upgrade cryptography && sudo python3 -m spacy download en_core_web_sm || exiterr "deps failed (linux), exiting."
+      sudo apt -y install git cmake build-essential python3-pip libpython3-dev python3-setuptools && pip3 install -U numpy spacy && pip3 install -U --upgrade cryptography && sudo python3 -m spacy download en_core_web_sm || exiterr "deps failed (linux), exiting."
     else
       exiterr "deps failed (unsupported linux distro ${DISTRO}), exiting."
     fi
   elif [ "${OS}" == "Darwin" ]; then
-    brew install cmake python && pip3 install -U spacy && pip3 install -U --upgrade cryptography && python3 -m spacy download en_core_web_sm || exiterr "deps failed (mac), exiting."
+    brew install cmake python && pip3 install -U numpy spacy && pip3 install -U --upgrade cryptography && python3 -m spacy download en_core_web_sm || exiterr "deps failed (mac), exiting."
   else
     exiterr "deps failed (unsupported os ${OS}), exiting."
   fi
