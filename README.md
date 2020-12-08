@@ -1,9 +1,9 @@
 Spacy-cpp
 =========
 
-| **Linux** | **Mac** |
-|-----------|---------|
-| [![Linux](https://github.com/d99kris/spacy-cpp/workflows/Linux/badge.svg)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3ALinux) | [![macOS](https://github.com/d99kris/spacy-cpp/workflows/macOS/badge.svg)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3AmacOS) |
+| **Linux + Mac** |
+|-----------------|
+| [![Build status](https://travis-ci.com/d99kris/spacy-cpp.svg?branch=master)](https://travis-ci.com/d99kris/spacy-cpp) |
 
 Spacy-cpp is a C++ wrapper library for the excellent NLP library [spaCy](https://spacy.io/).
 This project is not affiliated with spaCy, but it is distributed under the same license (MIT).
