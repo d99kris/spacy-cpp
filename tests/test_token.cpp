@@ -385,7 +385,7 @@ int main()
       Spacy::Token back = doc.tokens().at(2);
       unittest::ExpectEqual(std::string, give.tag_(), "VB");
       unittest::ExpectEqual(std::string, it.tag_(), "PRP");
-      unittest::ExpectEqual(std::string, back.tag_(), "RP");
+      unittest::ExpectEqual(std::string, back.tag_(), "RB");
     }
 
     // Token::text

@@ -1,9 +1,9 @@
 Spacy-cpp
 =========
 
-| **Linux + Mac** |
-|-----------------|
-| [![Build status](https://travis-ci.com/d99kris/spacy-cpp.svg?branch=master)](https://travis-ci.com/d99kris/spacy-cpp) |
+| **Linux** | **Mac** |
+|-----------|---------|
+| [![Linux](https://github.com/d99kris/spacy-cpp/workflows/Linux/badge.svg)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3ALinux) | [![macOS](https://github.com/d99kris/spacy-cpp/workflows/macOS/badge.svg)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3AmacOS) |
 
 Spacy-cpp is a C++ wrapper library for the excellent NLP library [spaCy](https://spacy.io/).
 This project is not affiliated with spaCy, but it is distributed under the same license (MIT).
@@ -33,7 +33,7 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 doc = nlp(u"This is a sentence.")
 for token in doc:
-    print token.text + " [" + token.pos_ + "]"
+    print (token.text + " [" + token.pos_ + "]")
 ```
 
 

@@ -69,7 +69,7 @@ namespace Spacy
     long pos() const;
     std::string pos_() const;
     double prob() const;
-    long rank() const;
+    double rank() const;
     double sentiment() const;
     long shape() const;
     std::string shape_() const;

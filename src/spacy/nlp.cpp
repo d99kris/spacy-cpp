@@ -27,7 +27,7 @@ namespace Spacy
     PyObjectPtr text(Python::get_object<std::string>(p_text));
     std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({text});
     PyObjectPtr doc(Python::call_method<PyObjectPtr>(m_nlp, args));
-    return Doc(doc);
+    return doc;
   }
 
   Vocab Nlp::vocab() const
