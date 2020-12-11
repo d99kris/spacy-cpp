@@ -25,7 +25,7 @@ namespace Spacy
   {
     if (m_spacy.get() == nullptr)
     {
-      throw std::runtime_error("No module named spacy. Try: pip install -U spacy");
+      throw std::runtime_error("No module named spacy. Try: pip3 install -U spacy");
     }
   }
 
@@ -41,9 +41,9 @@ namespace Spacy
     if (nlp.get() == nullptr)
     {
       throw std::runtime_error("Can't find model '" + p_model + "'. "
-                               "Try: python -m spacy download " + p_model);
+                               "Try: python3 -m spacy download " + p_model);
     }
-    return Nlp(nlp);
+    return nlp;
   }
 
   const Attrs& Spacy::attrs()

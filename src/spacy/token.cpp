@@ -223,9 +223,9 @@ namespace Spacy
     return Python::get_attr_value<double>(m_token, "prob");
   }
 
-  long Token::rank() const
+  double Token::rank() const
   {
-    return Python::get_attr_value<long>(m_token, "rank");
+    return Python::get_attr_value<double>(m_token, "rank");
   }
     
   double Token::sentiment() const
