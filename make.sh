@@ -83,7 +83,14 @@ fi
 
 # build
 if [[ "${BUILD}" == "1" ]]; then
-  mkdir -p build && cd build && cmake .. && make && cd .. || exiterr "build failed, exiting."
+  OS="$(uname)"
+  MAKEARGS=""
+  if [ "${OS}" == "Linux" ]; then
+    MAKEARGS="-j$(nproc)"
+  elif [ "${OS}" == "Darwin" ]; then
+    MAKEARGS="-j$(sysctl -n hw.ncpu)"
+  fi
+  mkdir -p build && cd build && cmake .. && make ${MAKEARGS} && cd .. || exiterr "build failed, exiting."
 fi
 
 # tests

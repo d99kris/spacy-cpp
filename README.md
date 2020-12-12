@@ -33,15 +33,15 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 doc = nlp(u"This is a sentence.")
 for token in doc:
-    print (token.text + " [" + token.pos_ + "]")
+    print(token.text + " [" + token.pos_ + "]")
 ```
 
 
 Supported Platforms
 ===================
-Spacy-cpp is implemented using C++11 with the intention of being portable. Current version has been
-tested on:
-- macOS 10.15 Catalina
+Spacy-cpp is implemented using C++11 with the intention of being portable. Current version has
+been tested on:
+- macOS Big Sur 11.0
 - Ubuntu 20.04 LTS
 
 
