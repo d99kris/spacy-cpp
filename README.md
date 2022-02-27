@@ -5,15 +5,16 @@ Spacy-cpp
 |-----------|---------|
 | [![Linux](https://github.com/d99kris/spacy-cpp/workflows/Linux/badge.svg?branch=master)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3ALinux) | [![macOS](https://github.com/d99kris/spacy-cpp/workflows/macOS/badge.svg?branch=master)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3AmacOS) |
 
-Spacy-cpp is a C++ wrapper library for the excellent NLP library [spaCy](https://spacy.io/).
-This project is not affiliated with spaCy, but it is distributed under the same license (MIT).
+Spacy-cpp is a C++ wrapper library for the NLP library
+[spaCy](https://spacy.io/). This project is not affiliated with spaCy, it is
+however distributed under the same type of license (MIT).
 
-The goal of spacy-cpp is to expose the functionality of spaCy to C++ applications, and to provide
-an API that is similar to that of spaCy, enabling rapid development in Python and simple porting
-to C++.
+The goal of spacy-cpp is to expose the functionality of spaCy to C++
+applications, and to provide an API that is similar to that of spaCy,
+enabling rapid development in Python and simple porting to C++.
 
-Spacy-cpp is under development and does not yet support all API's of spaCy, refer to the
-API Documentation section below.
+Spacy-cpp is under development and does not yet support all API's of spaCy,
+refer to the API Documentation section below.
 
 
 Example Usage
@@ -39,15 +40,16 @@ for token in doc:
 
 Supported Platforms
 ===================
-Spacy-cpp is implemented using C++11 with the intention of being portable. Current version has
-been tested on:
+Spacy-cpp is implemented using C++11 with the intention of being portable.
+Current version has been tested on:
 - macOS Big Sur 11.0
 - Ubuntu 20.04 LTS
 
 
 Pre-requisites
 ==============
-Spacy-cpp requires python development library, pip, spaCy and typically a spaCy model.
+Spacy-cpp requires python development library, pip, spaCy and typically a
+spaCy model.
 
 macOS
 -----
@@ -66,9 +68,7 @@ Install build dependencies:
 
     sudo apt install cmake python3-pip libpython3-dev
 
-Install spaCy and an English model (if the python3 command fails with segmentation fault,
-it could be this bug https://github.com/explosion/spaCy/issues/4838 and a possible workaround
-is to call the prepend command with `sudo`):
+Install spaCy and an English model:
 
     pip3 install -U spacy
     python3 -m spacy download en_core_web_sm
@@ -95,8 +95,9 @@ Include header (convenience header including all modules):
 
 Header-only Library
 -------------------
-Copy the src/spacy directory to the source directory of your project. Then define SPACY_HEADER_ONLY and
-include headers needed (spacy/spacy includes all headers):
+Copy the src/spacy directory to the source directory of your project. Then
+define SPACY_HEADER_ONLY and include headers needed (spacy/spacy includes
+all headers):
 
     #define SPACY_HEADER_ONLY
     #include <spacy/spacy>
@@ -216,16 +217,18 @@ Supported Methods / Attributes
 
 Key Differences with spaCy
 --------------------------
-1. In spacy-cpp Nlp cannot be called as a method in order to perform parsing. Instead one need to use
-   Nlp::parse().
-2. In spacy-cpp Doc is not an iterable, instead one need to use Doc::token() to get a std::vector of the
-   tokens in the Doc. Likewise for Span.
-3. In spacy-cpp non-ASCII strings must be UTF-8 encoded in order to be correctly processed.
+1. In spacy-cpp Nlp cannot be called as a method in order to perform parsing.
+   Instead one need to use Nlp::parse().
+2. In spacy-cpp Doc is not an iterable, instead one need to use Doc::token()
+   to get a std::vector of the tokens in the Doc. Likewise for Span.
+3. In spacy-cpp non-ASCII strings must be UTF-8 encoded in order to be
+   correctly processed.
 
 
 Technical Details
 =================
-Spacy-cpp uses cmake for its tests. Commands to build and execute the test suite:
+Spacy-cpp uses cmake for its tests. Commands to build and execute the test
+suite:
 
     mkdir -p build && cd build && cmake -DSPACYCPP_BUILD_TESTS=ON .. && make && ctest --output-on-failure ; cd -
 
@@ -238,7 +241,8 @@ See [LICENSE](https://github.com/d99kris/spacy-cpp/blob/master/LICENSE) file.
 
 Contributions
 =============
-Bugs, PRs, etc are welcome on the GitHub project page https://github.com/d99kris/spacy-cpp
+Bugs, PRs, etc are welcome on the GitHub project page
+https://github.com/d99kris/spacy-cpp
 
 
 Keywords
