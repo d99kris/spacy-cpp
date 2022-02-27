@@ -2,14 +2,14 @@
 #
 # URL:      https://github.com/d99kris/spacy-cpp
 #
-# Copyright (C) 2017-2020 Kristofer Berggren
+# Copyright (C) 2017-2022 Kristofer Berggren
 # All rights reserved.
 #
 # spacy-cpp is distributed under the MIT license, see LICENSE for details.
 
 # Project
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(spacy-cpp VERSION 1.04 LANGUAGES CXX)
+project(spacy-cpp VERSION 1.05 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 if(MSVC)
   if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
@@ -41,7 +41,7 @@ add_library(spacy SHARED
   )
 install(TARGETS spacy LIBRARY DESTINATION lib)
 set_target_properties(spacy PROPERTIES LINK_FLAGS "-fPIC")
-include_directories(${PYTHON_INCLUDE_DIRS})
+target_include_directories(spacy PUBLIC ${PYTHON_INCLUDE_DIRS})
 target_link_libraries(spacy ${PYTHON_LIBRARIES})
 
 # Headers
@@ -60,29 +60,35 @@ install(FILES
   DESTINATION include/spacy)
 
 # Tests
-enable_testing()
-include_directories("src")
-set(LIB_HEADERS "src/spacy/spacy")
-set(TEST_HEADERS "tests/unittest.h")
+option(SPACYCPP_BUILD_TESTS "Build tests" OFF)
+message(STATUS "Build tests: ${SPACYCPP_BUILD_TESTS}")
+if(SPACYCPP_BUILD_TESTS)
 
-function(add_spacy_test target)
+  # Tests init
+  enable_testing()
+  include_directories("src")
+  set(LIB_HEADERS "src/spacy/spacy")
+  set(TEST_HEADERS "tests/unittest.h")
 
-  add_executable(test_link_${target} tests/test_${target}.cpp)
-  target_link_libraries(test_link_${target} spacy)
-  add_test(test_link_${target} "${PROJECT_BINARY_DIR}/test_link_${target}")
+  macro(add_spacy_test target)
+    add_executable(test_link_${target} tests/test_${target}.cpp)
+    target_link_libraries(test_link_${target} spacy)
+    add_test(test_link_${target} "${PROJECT_BINARY_DIR}/test_link_${target}")
 
-  add_executable(test_header_${target} tests/test_${target}.cpp)
-  target_compile_definitions(test_header_${target} PRIVATE SPACY_HEADER_ONLY=1)
-  target_link_libraries(test_header_${target} ${PYTHON_LIBRARIES})
-  add_test(test_header_${target} "${PROJECT_BINARY_DIR}/test_header_${target}")
-  
-endfunction()
+    add_executable(test_header_${target} tests/test_${target}.cpp)
+    target_compile_definitions(test_header_${target} PRIVATE SPACY_HEADER_ONLY=1)
+    target_link_libraries(test_header_${target} ${PYTHON_LIBRARIES})
+    target_include_directories(test_header_${target} PRIVATE ${PYTHON_INCLUDE_DIRS})
+    add_test(test_header_${target} "${PROJECT_BINARY_DIR}/test_header_${target}")
+  endmacro()
 
-add_spacy_test(spacy)
-add_spacy_test(attrs)
-add_spacy_test(nlp)
-add_spacy_test(doc)
-add_spacy_test(vocab)
-add_spacy_test(stringstore)
-add_spacy_test(span)
-add_spacy_test(token)
+  add_spacy_test(spacy)
+  add_spacy_test(attrs)
+  add_spacy_test(nlp)
+  add_spacy_test(doc)
+  add_spacy_test(vocab)
+  add_spacy_test(stringstore)
+  add_spacy_test(span)
+  add_spacy_test(token)
+
+endif()
