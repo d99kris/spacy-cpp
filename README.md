@@ -227,7 +227,7 @@ Technical Details
 =================
 Spacy-cpp uses cmake for its tests. Commands to build and execute the test suite:
 
-    mkdir -p build && cd build && cmake .. && make && ctest --output-on-failure ; cd -
+    mkdir -p build && cd build && cmake -DSPACYCPP_BUILD_TESTS=ON .. && make && ctest --output-on-failure ; cd -
 
 
 License

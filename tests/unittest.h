@@ -16,6 +16,7 @@
 #endif
 
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <sstream>
 

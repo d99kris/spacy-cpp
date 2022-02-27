@@ -10,6 +10,7 @@
 #include "spacy.h"
 
 #include <memory>
+#include <stdexcept>
 #include <string>
 
 #include "attrs.h"

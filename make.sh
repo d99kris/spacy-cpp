@@ -2,7 +2,7 @@
 
 # make.sh
 #
-# Copyright (C) 2020 Kristofer Berggren
+# Copyright (C) 2020-2022 Kristofer Berggren
 # All rights reserved.
 #
 # See LICENSE for redistribution information.
@@ -90,7 +90,7 @@ if [[ "${BUILD}" == "1" ]]; then
   elif [ "${OS}" == "Darwin" ]; then
     MAKEARGS="-j$(sysctl -n hw.ncpu)"
   fi
-  mkdir -p build && cd build && cmake .. && make ${MAKEARGS} && cd .. || exiterr "build failed, exiting."
+  mkdir -p build && cd build && cmake -DSPACYCPP_BUILD_TESTS=ON .. && make ${MAKEARGS} && cd .. || exiterr "build failed, exiting."
 fi
 
 # tests
