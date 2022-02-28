@@ -9,7 +9,7 @@
 
 # Project
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(spacy-cpp VERSION 1.05 LANGUAGES CXX)
+project(spacy-cpp VERSION 1.06 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 if(MSVC)
   if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
@@ -41,7 +41,8 @@ add_library(spacy SHARED
   )
 install(TARGETS spacy LIBRARY DESTINATION lib)
 set_target_properties(spacy PROPERTIES LINK_FLAGS "-fPIC")
-target_include_directories(spacy PUBLIC ${PYTHON_INCLUDE_DIRS})
+target_include_directories(spacy PUBLIC ${PYTHON_INCLUDE_DIRS}
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>")
 target_link_libraries(spacy ${PYTHON_LIBRARIES})
 
 # Headers
@@ -58,6 +59,12 @@ install(FILES
   src/spacy/token.h
   src/spacy/vocab.h
   DESTINATION include/spacy)
+
+# Uninstall
+add_custom_target(uninstall
+  COMMAND "${CMAKE_COMMAND}" -E remove "${CMAKE_INSTALL_PREFIX}/lib/libspacy${CMAKE_SHARED_LIBRARY_SUFFIX}"
+  COMMAND "${CMAKE_COMMAND}" -E remove_directory "${CMAKE_INSTALL_PREFIX}/include/spacy"
+)
 
 # Tests
 option(SPACYCPP_BUILD_TESTS "Build tests" OFF)
