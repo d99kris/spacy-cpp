@@ -1,9 +1,9 @@
 Spacy-cpp
 =========
 
-| **Linux** | **Mac** |
-|-----------|---------|
-| [![Linux](https://github.com/d99kris/spacy-cpp/workflows/Linux/badge.svg?branch=master)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3ALinux) | [![macOS](https://github.com/d99kris/spacy-cpp/workflows/macOS/badge.svg?branch=master)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3AmacOS) |
+| **Linux** |
+|-----------|
+| [![Linux](https://github.com/d99kris/spacy-cpp/workflows/Linux/badge.svg?branch=master)](https://github.com/d99kris/spacy-cpp/actions?query=workflow%3ALinux) |
 
 Spacy-cpp is a C++ wrapper library for the NLP library
 [spaCy](https://spacy.io/). This project is not affiliated with spaCy, it is
@@ -42,25 +42,13 @@ Supported Platforms
 ===================
 Spacy-cpp is implemented using C++11 with the intention of being portable.
 Current version has been tested on:
-- macOS Big Sur 11.0
-- Ubuntu 20.04 LTS
+- Ubuntu 22.04 LTS
 
 
 Pre-requisites
 ==============
 Spacy-cpp requires python development library, pip, spaCy and typically a
 spaCy model.
-
-macOS
------
-Install build dependencies:
-
-    brew install cmake python
-
-Install spaCy and an English model:
-
-    pip3 install -U spacy
-    python3 -m spacy download en_core_web_sm
 
 Ubuntu
 ------
