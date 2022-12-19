@@ -67,6 +67,15 @@ namespace Spacy
     }
 
     template <typename T>
+    static T get_attr_obj(PyObjectPtr p_obj, const std::string& p_attr)
+    {
+      assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));
+      PyObjectPtr attr(PyObject_GetAttrString(p_obj.get(), p_attr.c_str()));
+      return T(attr);
+    }
+
+
+    template <typename T>
     static std::vector<T> get_attr_vector(PyObjectPtr p_obj, const std::string& p_attr)
     {
       assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));

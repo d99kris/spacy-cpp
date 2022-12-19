@@ -8,7 +8,7 @@
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
 
 #include "token.h"
-
+#include "morph.h"
 #include <string>
 #include <vector>
 
@@ -271,6 +271,11 @@ namespace Spacy
     Token Token::head() const
   {
     return Python::get_attr_obj<Token>(m_token, "head");
+  }
+
+   Morph Token::morph() const
+  {
+    return Python::get_attr_obj<Morph>(m_token, "morph");
   }
 
 

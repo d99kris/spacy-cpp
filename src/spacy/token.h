@@ -19,6 +19,7 @@ namespace Spacy
   class Doc;
   class Python;
   class Span;
+  class Morph;
 
   class Token
   {
@@ -79,6 +80,7 @@ namespace Spacy
     std::string text_with_ws() const;
     std::string whitespace_() const;
     Token head() const;
+    Morph morph() const;
 
   private:
     explicit Token(PyObjectPtr p_token);
