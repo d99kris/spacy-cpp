@@ -78,6 +78,7 @@ namespace Spacy
     std::string text() const;
     std::string text_with_ws() const;
     std::string whitespace_() const;
+    Token head() const;
 
   private:
     explicit Token(PyObjectPtr p_token);
