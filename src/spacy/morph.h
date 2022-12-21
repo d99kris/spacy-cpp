@@ -11,6 +11,7 @@
 #include <string>
 #include "token.h"
 #include "pyobjectptr.h"
+#include <map>
 
 namespace Spacy
 {
@@ -20,12 +21,12 @@ namespace Spacy
 
   public:
     virtual ~Morph();
-
+   
    explicit Morph(PyObjectPtr p_morph);
     Morph();
     std::string to_string() const;
-
-
+    std::string  get(std::string feat);
+    std::map<std::string,std::string> to_dict();
   private:
     PyObjectPtr m_morph;
   };

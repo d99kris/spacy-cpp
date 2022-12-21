@@ -35,7 +35,33 @@ namespace Spacy
 
  std::string Morph::to_string() const
   {
-   return Python::call_method<std::string>(m_morph, "__str__");
+	return Python::call_method<std::string>(m_morph, "__str__");
   }
+
+std::map<std::string,std::string> Morph::to_dict(){
+
+
+    PyObjectPtr result = Python::call_method<PyObjectPtr>(m_morph, "to_dict");
+    return Python::get_map<std::string, std::string>(result);
+
+}
+
+std::string Morph::get(std::string feat)
+  {
+	//Pythons "get" seems not working here.
+	//i spend a lot of time to check why.. 
+	//Workaround : to_dict, and fetsch the value
+	  std::map<std::string,std::string> map = this->to_dict();
+	  for (auto val : map){
+	      if( val.first == feat){
+		      return val.second;
+	      }
+	  }
+	  //return empty string. Same behavior as in python..
+	  return "";
+
+  }
+
+  
 
 }
