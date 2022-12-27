@@ -9,7 +9,7 @@
 
 # Project
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(spacy-cpp VERSION 1.06 LANGUAGES CXX)
+project(spacy-cpp VERSION 1.07 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 if(MSVC)
   if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
