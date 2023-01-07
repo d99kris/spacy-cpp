@@ -57,6 +57,11 @@ namespace Spacy
     return Python::get_attr_value<bool>(m_token, "has_vector");
   }
 
+  Token Token::head() const
+  {
+    return Python::get_attr_obj<Token>(m_token, "head");
+  }
+
   long Token::i() const
   {
     return Python::get_attr_value<long>(m_token, "i");
@@ -198,6 +203,11 @@ namespace Spacy
     return Python::get_attr_value<std::string>(m_token, "norm_");
   }
  
+  Morph Token::morph() const
+  {
+    return Python::get_attr_obj<Morph>(m_token, "morph");
+  }
+
   long Token::orth() const
   {
     return Python::get_attr_value<long>(m_token, "orth");
@@ -267,18 +277,6 @@ namespace Spacy
   {
     return Python::get_attr_value<std::string>(m_token, "whitespace_");
   }
-
-    Token Token::head() const
-  {
-    return Python::get_attr_obj<Token>(m_token, "head");
-  }
-
-   Morph Token::morph() const
-  {
-    return Python::get_attr_obj<Morph>(m_token, "morph");
-  }
-
-
 
   Token::Token(PyObjectPtr p_token)
     : m_token(p_token)

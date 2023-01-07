@@ -74,7 +74,6 @@ namespace Spacy
       return T(attr);
     }
 
-
     template <typename T>
     static std::vector<T> get_attr_vector(PyObjectPtr p_obj, const std::string& p_attr)
     {

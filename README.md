@@ -157,6 +157,7 @@ Supported Methods / Attributes
 - dep_()
 - ent_iob_()
 - has_vector()
+- head()
 - i()
 - idx()
 - is_alpha()

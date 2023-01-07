@@ -81,6 +81,14 @@ int main()
       unittest::ExpectTrue(apples.has_vector());
     }
 
+    // Token::head
+    {
+      Spacy::Doc doc = nlp.parse("Give it back! He pleaded.");
+      std::vector<Spacy::Token> give_children = doc.tokens().at(0).children();
+      unittest::ExpectEqual(std::string, doc.tokens().at(0).text(),
+                            give_children.at(0).head().text());
+    }
+
     // Token::i
     {
       Spacy::Doc doc = nlp.parse("I like apples");

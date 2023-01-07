@@ -37,6 +37,7 @@ namespace Spacy
     std::string dep_() const;
     std::string ent_iob_() const;
     bool has_vector() const;
+    Token head() const;
     long i() const;
     long idx() const;
     bool is_alpha() const;
@@ -62,6 +63,7 @@ namespace Spacy
     bool like_url() const;
     long lower() const;
     std::string lower_() const;
+    Morph morph() const;
     Token nbor(long p_i = 1) const;
     long norm() const;
     std::string norm_() const;
@@ -79,8 +81,6 @@ namespace Spacy
     std::string text() const;
     std::string text_with_ws() const;
     std::string whitespace_() const;
-    Token head() const;
-    Morph morph() const;
 
   private:
     explicit Token(PyObjectPtr p_token);
