@@ -36,6 +36,7 @@ namespace Spacy
     std::string dep_() const;
     std::string ent_iob_() const;
     bool has_vector() const;
+    Token head() const;
     long i() const;
     long idx() const;
     bool is_alpha() const;
@@ -78,7 +79,6 @@ namespace Spacy
     std::string text() const;
     std::string text_with_ws() const;
     std::string whitespace_() const;
-    Token head() const;
 
   private:
     explicit Token(PyObjectPtr p_token);
