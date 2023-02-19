@@ -2,7 +2,7 @@
 #
 # URL:      https://github.com/d99kris/spacy-cpp
 #
-# Copyright (C) 2017-2022 Kristofer Berggren
+# Copyright (C) 2017-2023 Kristofer Berggren
 # All rights reserved.
 #
 # spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -25,6 +25,13 @@ endif()
 find_package(PythonLibs 3 REQUIRED)
 find_package(PythonInterp 3 REQUIRED)
 
+# Ccache
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+  message(STATUS "Found ccache")
+  set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
+endif()
+
 # Library
 add_library(spacy SHARED
   src/spacy/attrs.cpp
@@ -44,6 +51,9 @@ set_target_properties(spacy PROPERTIES LINK_FLAGS "-fPIC")
 target_include_directories(spacy PUBLIC ${PYTHON_INCLUDE_DIRS}
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>")
 target_link_libraries(spacy ${PYTHON_LIBRARIES})
+
+add_library(spacy-hdr INTERFACE)
+target_include_directories(spacy-hdr INTERFACE src ${PYTHON_INCLUDE_DIRS})
 
 # Headers
 install(FILES

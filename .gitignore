@@ -1,1 +1,3 @@
 build
+examples/cmake-add-subdirectory-hdr/spacy-cpp
+examples/cmake-add-subdirectory-lib/spacy-cpp

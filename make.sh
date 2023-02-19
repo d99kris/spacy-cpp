@@ -2,7 +2,7 @@
 
 # make.sh
 #
-# Copyright (C) 2020-2022 Kristofer Berggren
+# Copyright (C) 2020-2023 Kristofer Berggren
 # All rights reserved.
 #
 # See LICENSE for redistribution information.
@@ -20,6 +20,7 @@ BUILD="0"
 TESTS="0"
 DOC="0"
 INSTALL="0"
+EXAMPLES="0"
 case "${1%/}" in
   deps)
     DEPS="1"
@@ -44,12 +45,17 @@ case "${1%/}" in
     INSTALL="1"
     ;;
 
+  examples)
+    EXAMPLES="1"
+    ;;
+
   all)
     DEPS="1"
     BUILD="1"
     TESTS="1"
     DOC="1"
     INSTALL="1"
+    EXAMPLES="1"
     ;;
 
   *)
@@ -59,6 +65,7 @@ case "${1%/}" in
     echo "  tests     - perform build and run tests"
     echo "  doc       - perform build and generate documentation"
     echo "  install   - perform build and install"
+    echo "  examples  - build and run examples"
     echo "  all       - perform all actions above"
     exit 1
     ;;
@@ -113,6 +120,25 @@ if [[ "${INSTALL}" == "1" ]]; then
   else
     exiterr "install failed (unsupported os ${OS}), exiting."
   fi
+fi
+
+# examples
+if [[ "${EXAMPLES}" == "1" ]]; then
+  OS="$(uname)"
+  MAKEARGS=""
+  if [ "${OS}" == "Linux" ]; then
+    MAKEARGS="-j$(nproc)"
+  elif [ "${OS}" == "Darwin" ]; then
+    MAKEARGS="-j$(sysctl -n hw.ncpu)"
+  fi
+
+  BASEDIR="$(pwd)"
+
+  rm -f examples/cmake-add-subdirectory-*/spacy-cpp || exiterr "example pre-cleanup failed, exiting."
+
+  cd examples/cmake-add-subdirectory-hdr && ln -s ../.. spacy-cpp && mkdir -p build && cd build && cmake .. && make ${MAKEARGS} && ./exprog1 > /dev/null && cd ${BASEDIR} || exiterr "example failed, exiting."
+
+  cd examples/cmake-add-subdirectory-lib && ln -s ../.. spacy-cpp && mkdir -p build && cd build && cmake .. && make ${MAKEARGS} && ./exprog2 > /dev/null && cd ${BASEDIR} || exiterr "example failed, exiting."
 fi
 
 # exit

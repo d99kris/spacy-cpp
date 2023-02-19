@@ -91,6 +91,13 @@ all headers):
     #include <spacy/spacy>
 
 
+CMake Usage
+-----------
+The source tree includes two CMake project examples:
+
+- [Using spacy-cpp as header-only library](examples/cmake-add-subdirectory-hdr)
+- [Using spacy-cpp as shared library](examples/cmake-add-subdirectory-lib)
+
 API Documentation
 =================
 Spacy-cpp is under development and does not support the complete spaCy API yet.
