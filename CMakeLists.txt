@@ -43,6 +43,7 @@ add_library(spacy SHARED
   src/spacy/pyobjectptr.cpp
   src/spacy/spacy.cpp
   src/spacy/stringstore.cpp
+  src/spacy/morph.cpp
   src/spacy/token.cpp
   src/spacy/vocab.cpp
   )
@@ -66,6 +67,7 @@ install(FILES
   src/spacy/spacy
   src/spacy/spacy.h
   src/spacy/stringstore.h
+  src/spacy/morph.h
   src/spacy/token.h
   src/spacy/vocab.h
   DESTINATION include/spacy)

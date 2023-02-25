@@ -17,6 +17,7 @@
 #include "spacy.h"
 #include "span.h"
 #include "stringstore.h"
+#include "morph.h"
 #include "token.h"
 #include "vocab.h"
 

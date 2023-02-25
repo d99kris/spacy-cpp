@@ -19,6 +19,7 @@ namespace Spacy
   class Doc;
   class Python;
   class Span;
+  class Morph;
 
   class Token
   {
@@ -62,6 +63,7 @@ namespace Spacy
     bool like_url() const;
     long lower() const;
     std::string lower_() const;
+    Morph morph() const;
     Token nbor(long p_i = 1) const;
     long norm() const;
     std::string norm_() const;
