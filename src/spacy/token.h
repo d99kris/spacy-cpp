@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2023 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -17,6 +17,7 @@
 namespace Spacy
 {
   class Doc;
+  class MorphAnalysis;
   class Python;
   class Span;
 
@@ -62,6 +63,7 @@ namespace Spacy
     bool like_url() const;
     long lower() const;
     std::string lower_() const;
+    MorphAnalysis morph() const;
     Token nbor(long p_i = 1) const;
     long norm() const;
     std::string norm_() const;

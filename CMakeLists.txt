@@ -36,6 +36,7 @@ endif()
 add_library(spacy SHARED
   src/spacy/attrs.cpp
   src/spacy/attrs.cpp
+  src/spacy/morphanalysis.cpp
   src/spacy/nlp.cpp
   src/spacy/python.cpp
   src/spacy/span.cpp
@@ -58,6 +59,7 @@ target_include_directories(spacy-hdr INTERFACE src ${PYTHON_INCLUDE_DIRS})
 # Headers
 install(FILES
   src/spacy/attrs.h
+  src/spacy/morphanalysis.h
   src/spacy/nlp.h
   src/spacy/python.h
   src/spacy/span.h
@@ -101,6 +103,7 @@ if(SPACYCPP_BUILD_TESTS)
 
   add_spacy_test(spacy)
   add_spacy_test(attrs)
+  add_spacy_test(morphanalysis)
   add_spacy_test(nlp)
   add_spacy_test(doc)
   add_spacy_test(vocab)

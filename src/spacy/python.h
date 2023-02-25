@@ -128,7 +128,7 @@ namespace Spacy
       std::vector<T> items;
       for (Py_ssize_t i = 0; i < size; ++i)
       {
-        items.push_back(T(PyObjectPtr(PySequence_GetItem(list.get(), i))));
+        items.push_back(Convert<T>::get_value(PyObjectPtr(PySequence_GetItem(list.get(), i))));
       }
       return items;
     }
@@ -163,8 +163,7 @@ namespace Spacy
     public:
       static T get_value(PyObjectPtr p_obj)
       {
-        (void)(p_obj);
-        assert(0);
+        return T(p_obj);
       }
 
       static PyObjectPtr get_object(T p_val)
