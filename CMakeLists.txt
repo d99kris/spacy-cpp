@@ -36,6 +36,7 @@ endif()
 add_library(spacy SHARED
   src/spacy/attrs.cpp
   src/spacy/attrs.cpp
+  src/spacy/morphanalysis.cpp
   src/spacy/nlp.cpp
   src/spacy/python.cpp
   src/spacy/span.cpp
@@ -43,7 +44,6 @@ add_library(spacy SHARED
   src/spacy/pyobjectptr.cpp
   src/spacy/spacy.cpp
   src/spacy/stringstore.cpp
-  src/spacy/morph.cpp
   src/spacy/token.cpp
   src/spacy/vocab.cpp
   )
@@ -59,6 +59,7 @@ target_include_directories(spacy-hdr INTERFACE src ${PYTHON_INCLUDE_DIRS})
 # Headers
 install(FILES
   src/spacy/attrs.h
+  src/spacy/morphanalysis.h
   src/spacy/nlp.h
   src/spacy/python.h
   src/spacy/span.h
@@ -67,7 +68,6 @@ install(FILES
   src/spacy/spacy
   src/spacy/spacy.h
   src/spacy/stringstore.h
-  src/spacy/morph.h
   src/spacy/token.h
   src/spacy/vocab.h
   DESTINATION include/spacy)
@@ -103,6 +103,7 @@ if(SPACYCPP_BUILD_TESTS)
 
   add_spacy_test(spacy)
   add_spacy_test(attrs)
+  add_spacy_test(morphanalysis)
   add_spacy_test(nlp)
   add_spacy_test(doc)
   add_spacy_test(vocab)

@@ -106,6 +106,7 @@ Supported Classes
 -----------------
 - [Attrs](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/attrs.h)
 - [Doc](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/doc.h)
+- [MorphAnalysis](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/morphanalysis.h)
 - [Nlp](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/nlp.h)
 - [Spacy](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/spacy.h)
 - [Span](https://github.com/d99kris/spacy-cpp/blob/master/src/spacy/span.h)
@@ -131,6 +132,11 @@ Supported Methods / Attributes
 - text_with_ws()
 - tokens()
 - vector_norm()
+
+**MorphAnalysis** supports the following methods / attributes:
+- get()
+- str()
+- to_dict()
 
 **Nlp** supports the following methods / attributes:
 - parse()
@@ -190,6 +196,7 @@ Supported Methods / Attributes
 - like_url()
 - lower()
 - lower_()
+- morph()
 - nbor()
 - norm()
 - norm_()

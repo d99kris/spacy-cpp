@@ -2,16 +2,17 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2023 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
 
 #include "token.h"
-#include "morph.h"
+
 #include <string>
 #include <vector>
 
+#include "morphanalysis.h"
 #include "pyobjectptr.h"
 #include "python.h"
 
@@ -187,6 +188,11 @@ namespace Spacy
     return Python::get_attr_value<std::string>(m_token, "lower_");
   }
  
+  MorphAnalysis Token::morph() const
+  {
+    return Python::get_attr_obj<MorphAnalysis>(m_token, "morph");
+  }
+
   Token Token::nbor(long p_i /* = 1 */) const
   {
     std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({Python::get_object<long>(p_i)});
@@ -203,11 +209,6 @@ namespace Spacy
     return Python::get_attr_value<std::string>(m_token, "norm_");
   }
  
-  Morph Token::morph() const
-  {
-    return Python::get_attr_obj<Morph>(m_token, "morph");
-  }
-
   long Token::orth() const
   {
     return Python::get_attr_value<long>(m_token, "orth");
