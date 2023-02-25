@@ -26,7 +26,12 @@ namespace Spacy
   {
     if (m_spacy.get() == nullptr)
     {
-      throw std::runtime_error("No module named spacy. Try: pip3 install -U spacy");
+#ifdef PYTHON_EXECUTABLE
+      const std::string interpreter = PYTHON_EXECUTABLE;
+#else
+      const std::string interpreter = "python3";
+#endif
+      throw std::runtime_error("No module named spacy. Try: " + interpreter + " -m pip install -U spacy");
     }
   }
 
@@ -41,8 +46,13 @@ namespace Spacy
     PyObjectPtr nlp(Python::call_method<PyObjectPtr>(m_spacy, "load", args));
     if (nlp.get() == nullptr)
     {
+#ifdef PYTHON_EXECUTABLE
+      const std::string interpreter = PYTHON_EXECUTABLE;
+#else
+      const std::string interpreter = "python3";
+#endif
       throw std::runtime_error("Can't find model '" + p_model + "'. "
-                               "Try: python3 -m spacy download " + p_model);
+                               "Try: " + interpreter + " -m spacy download " + p_model);
     }
     return nlp;
   }

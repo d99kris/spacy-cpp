@@ -8,8 +8,8 @@
 # spacy-cpp is distributed under the MIT license, see LICENSE for details.
 
 # Project
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(spacy-cpp VERSION 1.07 LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+project(spacy-cpp VERSION 1.08 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 if(MSVC)
   if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
@@ -22,8 +22,8 @@ else()
                        -Wcast-qual -Wno-missing-braces -Wswitch-default -Wunreachable-code \
                        -Wundef -Wuninitialized -Wcast-align")
 endif()
-find_package(PythonLibs 3 REQUIRED)
-find_package(PythonInterp 3 REQUIRED)
+set(Python3_FIND_FRAMEWORK "LAST")
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 # Ccache
 find_program(CCACHE_PROGRAM ccache)
@@ -49,12 +49,14 @@ add_library(spacy SHARED
   )
 install(TARGETS spacy LIBRARY DESTINATION lib)
 set_target_properties(spacy PROPERTIES LINK_FLAGS "-fPIC")
-target_include_directories(spacy PUBLIC ${PYTHON_INCLUDE_DIRS}
+target_include_directories(spacy PUBLIC ${Python3_INCLUDE_DIRS}
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>")
-target_link_libraries(spacy ${PYTHON_LIBRARIES})
+target_link_libraries(spacy ${Python3_LIBRARIES})
+target_compile_definitions(spacy PRIVATE PYTHON_EXECUTABLE="${Python3_EXECUTABLE}")
+message("PYTHON_EXECUTABLE=\"${Python3_EXECUTABLE}\"")
 
 add_library(spacy-hdr INTERFACE)
-target_include_directories(spacy-hdr INTERFACE src ${PYTHON_INCLUDE_DIRS})
+target_include_directories(spacy-hdr INTERFACE src ${Python3_INCLUDE_DIRS})
 
 # Headers
 install(FILES
@@ -96,8 +98,9 @@ if(SPACYCPP_BUILD_TESTS)
 
     add_executable(test_header_${target} tests/test_${target}.cpp)
     target_compile_definitions(test_header_${target} PRIVATE SPACY_HEADER_ONLY=1)
-    target_link_libraries(test_header_${target} ${PYTHON_LIBRARIES})
-    target_include_directories(test_header_${target} PRIVATE ${PYTHON_INCLUDE_DIRS})
+    target_link_libraries(test_header_${target} ${Python3_LIBRARIES})
+    target_include_directories(test_header_${target} PRIVATE ${Python3_INCLUDE_DIRS})
+    target_compile_definitions(test_header_${target} PRIVATE PYTHON_EXECUTABLE="${Python3_EXECUTABLE}")
     add_test(test_header_${target} "${PROJECT_BINARY_DIR}/test_header_${target}")
   endmacro()
 
