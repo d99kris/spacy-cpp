@@ -48,7 +48,7 @@ int main()
       unittest::ExpectEqual(std::string, morph.str(), "Number=Plur");
     }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

@@ -25,7 +25,7 @@ namespace Spacy
   Doc Nlp::parse(const std::string& p_text) const
   {
     PyObjectPtr text(Python::get_object<std::string>(p_text));
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({text});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ text });
     PyObjectPtr doc(Python::call_method<PyObjectPtr>(m_nlp, args));
     return doc;
   }

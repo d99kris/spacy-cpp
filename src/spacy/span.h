@@ -24,7 +24,7 @@ namespace Spacy
   {
     friend Doc;
     friend Python;
-    
+
   public:
     virtual ~Span();
 
@@ -39,12 +39,12 @@ namespace Spacy
     std::string text_with_ws() const;
     std::vector<Token> tokens() const;
     double vector_norm() const;
-    
+
   private:
     Span(PyObjectPtr p_span, const Doc* p_parent = nullptr);
 
     void set_parent(Doc* p_parent);
-    
+
   private:
     PyObjectPtr m_span;
     const Doc* m_parent;

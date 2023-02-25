@@ -31,7 +31,7 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_span, "label");
   }
-    
+
   std::string Span::label_() const
   {
     return Python::get_attr_value<std::string>(m_span, "label_");

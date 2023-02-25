@@ -137,7 +137,7 @@ int main()
       unittest::ExpectTrue(!apples.is_bracket());
       unittest::ExpectTrue(right_bracket.is_bracket());
     }
-    
+
     // Token::is_digit
     {
       Spacy::Doc doc = nlp.parse("5 apples");
@@ -159,7 +159,7 @@ int main()
       unittest::ExpectTrue(left_bracket.is_left_punct());
       unittest::ExpectTrue(!right_bracket.is_left_punct());
     }
-    
+
     // Token::is_lower
     {
       Spacy::Doc doc = nlp.parse("Many BIG apples");
@@ -201,7 +201,7 @@ int main()
       unittest::ExpectTrue(!like.is_quote());
       unittest::ExpectTrue(quote_end.is_quote());
     }
-    
+
     // Token::is_right_punct
     {
       Spacy::Doc doc = nlp.parse("() []");
@@ -361,7 +361,7 @@ int main()
       (void)it.rank();
       (void)back.rank();
     }
-    
+
     // Token::sentiment
     {
       Spacy::Doc doc = nlp.parse("Give it back! He pleaded.");
@@ -412,7 +412,7 @@ int main()
       unittest::ExpectEqual(std::string, token.whitespace_(), " ");
     }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

@@ -33,11 +33,11 @@ namespace Spacy
   Spacy::~Spacy()
   {
   }
-    
+
   Nlp Spacy::load(const std::string& p_model) const
   {
     PyObjectPtr model(Python::get_object<std::string>(p_model));
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({model});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ model });
     PyObjectPtr nlp(Python::call_method<PyObjectPtr>(m_spacy, "load", args));
     if (nlp.get() == nullptr)
     {

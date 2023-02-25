@@ -24,9 +24,9 @@ int main()
     // Attrs
     {
       unittest::ExpectTrue(attrs.IS_ALPHA() != attrs.IS_ASCII());
-    }    
+    }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

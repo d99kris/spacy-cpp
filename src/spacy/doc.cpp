@@ -27,7 +27,7 @@ namespace Spacy
   std::map<long, long> Doc::count_by(long p_attr) const
   {
     PyObjectPtr attr(Python::get_object<long>(p_attr));
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({attr});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ attr });
     PyObjectPtr result = Python::call_method<PyObjectPtr>(m_doc, "count_by", args);
     return Python::get_map<long, long>(result);
   }
@@ -72,7 +72,7 @@ namespace Spacy
 
   double Doc::similarity(const Doc& p_doc) const
   {
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({p_doc.get_ptr()});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ p_doc.get_ptr() });
     return Python::call_method<double>(m_doc, "similarity", args);
   }
 

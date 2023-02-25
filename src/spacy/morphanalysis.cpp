@@ -25,7 +25,7 @@ namespace Spacy
   std::vector<std::string> MorphAnalysis::get(const std::string& p_field) const
   {
     PyObjectPtr field(Python::get_object<std::string>(p_field));
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({field});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ field });
     PyObjectPtr return_value(Python::call_method<PyObjectPtr>(m_morphanalysis, "get", args));
     return Python::get_vector<std::string>(return_value);
   }

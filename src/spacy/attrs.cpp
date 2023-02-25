@@ -17,7 +17,7 @@ namespace Spacy
   Attrs::~Attrs()
   {
   }
-    
+
   long Attrs::IS_ALPHA() const
   {
     static long val = Python::get_attr_value<long>(m_attrs, "IS_ALPHA");
@@ -65,7 +65,7 @@ namespace Spacy
     static long val = Python::get_attr_value<long>(m_attrs, "IS_UPPER");
     return val;
   }
-    
+
   long Attrs::LIKE_URL() const
   {
     static long val = Python::get_attr_value<long>(m_attrs, "LIKE_URL");
@@ -95,7 +95,7 @@ namespace Spacy
     static long val = Python::get_attr_value<long>(m_attrs, "IS_OOV");
     return val;
   }
-    
+
   long Attrs::IS_BRACKET() const
   {
     static long val = Python::get_attr_value<long>(m_attrs, "IS_BRACKET");

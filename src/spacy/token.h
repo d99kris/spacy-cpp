@@ -26,7 +26,7 @@ namespace Spacy
     friend Doc;
     friend Python;
     friend Span;
-    
+
   public:
     virtual ~Token();
 

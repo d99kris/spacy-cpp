@@ -63,7 +63,7 @@ int main()
       double sentiment = span.sentiment();
       (void)(sentiment);
     }
-    
+
     // Span::text
     {
       Spacy::Span span = nlp.parse("I like apples.").sents().at(0);
@@ -75,7 +75,7 @@ int main()
       Spacy::Span span = nlp.parse("I like apples.").sents().at(0);
       unittest::ExpectEqual(std::string, span.text_with_ws(), "I like apples.");
     }
-    
+
     // Span::tokens
     {
       Spacy::Span span = nlp.parse("Give it back! He pleaded.").sents().at(0);
@@ -91,7 +91,7 @@ int main()
       unittest::ExpectTrue(span1.vector_norm() != span2.vector_norm());
     }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

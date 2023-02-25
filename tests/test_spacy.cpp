@@ -26,7 +26,7 @@ int main()
     // Spacy::attrs
     Spacy::Attrs attrs = spacy.attrs();
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

@@ -25,7 +25,7 @@ namespace Spacy
     static std::shared_ptr<Python> get_instance();
     virtual ~Python();
 
-    template <typename T>
+    template<typename T>
     static T call_method(PyObjectPtr p_method,
                          const std::vector<PyObjectPtr>& p_args = std::vector<PyObjectPtr>())
     {
@@ -41,7 +41,7 @@ namespace Spacy
       return get_value<T>(return_value);
     }
 
-    template <typename T>
+    template<typename T>
     static T call_method(PyObjectPtr p_obj, const std::string& p_method,
                          const std::vector<PyObjectPtr>& p_args = std::vector<PyObjectPtr>())
     {
@@ -50,7 +50,7 @@ namespace Spacy
       return call_method<T>(method, p_args);
     }
 
-    template <typename T>
+    template<typename T>
     static T get_dict_value(PyObjectPtr p_obj, PyObjectPtr p_key)
     {
       assert(PyDict_Check(p_obj.get()));
@@ -58,7 +58,7 @@ namespace Spacy
       return get_value<T>(return_value);
     }
 
-    template <typename T>
+    template<typename T>
     static T get_attr_value(PyObjectPtr p_obj, const std::string& p_attr)
     {
       assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));
@@ -66,7 +66,7 @@ namespace Spacy
       return get_value<T>(attr);
     }
 
-    template <typename T>
+    template<typename T>
     static T get_attr_obj(PyObjectPtr p_obj, const std::string& p_attr)
     {
       assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));
@@ -74,7 +74,7 @@ namespace Spacy
       return T(attr);
     }
 
-    template <typename T>
+    template<typename T>
     static std::vector<T> get_attr_vector(PyObjectPtr p_obj, const std::string& p_attr)
     {
       assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));
@@ -82,7 +82,7 @@ namespace Spacy
       return get_vector<T>(attr);
     }
 
-    template <typename T, typename U>
+    template<typename T, typename U>
     static std::vector<T> get_attr_vector_ctor_arg(PyObjectPtr p_obj, const std::string& p_attr, U p_arg)
     {
       assert(PyObject_HasAttrString(p_obj.get(), p_attr.c_str()));
@@ -90,13 +90,13 @@ namespace Spacy
       return get_vector_ctor_arg<T, U>(attr, p_arg);
     }
 
-    template <typename T, typename U>
+    template<typename T, typename U>
     static std::map<T, U> get_map(PyObjectPtr p_obj)
     {
       assert(PyDict_Check(p_obj.get()));
       std::map<T, U> map;
-      PyObject *key;
-      PyObject *value;
+      PyObject* key;
+      PyObject* value;
       Py_ssize_t pos = 0;
       while (PyDict_Next(p_obj.get(), &pos, &key, &value))
       {
@@ -107,19 +107,19 @@ namespace Spacy
       return map;
     }
 
-    template <typename T>
+    template<typename T>
     static PyObjectPtr get_object(T p_val)
     {
       return Convert<T>::get_object(p_val);
     }
 
-    template <typename T>
+    template<typename T>
     static T get_value(PyObjectPtr p_obj)
     {
       return Convert<T>::get_value(p_obj);
     }
 
-    template <typename T>
+    template<typename T>
     static std::vector<T> get_vector(PyObjectPtr p_obj)
     {
       assert(PySequence_Check(p_obj.get()) || PyIter_Check(p_obj.get()));
@@ -133,7 +133,7 @@ namespace Spacy
       return items;
     }
 
-    template <typename T, typename U>
+    template<typename T, typename U>
     static std::vector<T> get_vector_ctor_arg(PyObjectPtr p_obj, U p_arg)
     {
       assert(PySequence_Check(p_obj.get()) || PyIter_Check(p_obj.get()));
@@ -157,7 +157,7 @@ namespace Spacy
     Python();
 
   private:
-    template <typename T>
+    template<typename T>
     class Convert
     {
     public:
@@ -171,9 +171,9 @@ namespace Spacy
         (void)(p_val);
         assert(0);
       }
-  };
+    };
 
-  static bool Custom_PyFloat_Check(PyObjectPtr p_obj);
+    static bool Custom_PyFloat_Check(PyObjectPtr p_obj);
 
   private:
 #if (PY_MAJOR_VERSION >= 3)
@@ -183,25 +183,25 @@ namespace Spacy
 #endif
   };
 
-  template <>
+  template<>
   bool Python::Convert<bool>::get_value(PyObjectPtr p_obj);
-  template <>
+  template<>
   double Python::Convert<double>::get_value(PyObjectPtr p_obj);
-  template <>
+  template<>
   long Python::Convert<long>::get_value(PyObjectPtr p_obj);
-  template <>
+  template<>
   PyObjectPtr Python::Convert<PyObjectPtr>::get_value(PyObjectPtr p_obj);
-  template <>
+  template<>
   std::string Python::Convert<std::string>::get_value(PyObjectPtr p_obj);
-  template <>
+  template<>
   PyObjectPtr Python::Convert<bool>::get_object(bool p_val);
-  template <>
+  template<>
   PyObjectPtr Python::Convert<double>::get_object(double p_val);
-  template <>
+  template<>
   PyObjectPtr Python::Convert<long>::get_object(long p_val);
-  template <>
+  template<>
   PyObjectPtr Python::Convert<PyObjectPtr>::get_object(PyObjectPtr p_val);
-  template <>
+  template<>
   PyObjectPtr Python::Convert<std::string>::get_object(std::string p_val);
 }
 

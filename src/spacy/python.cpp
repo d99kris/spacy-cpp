@@ -42,21 +42,21 @@ namespace Spacy
     PySys_SetArgv(0, m_argv.get());
   }
 
-  template <>
+  template<>
   bool Python::Convert<bool>::get_value(PyObjectPtr p_obj)
   {
     assert(PyBool_Check(p_obj.get()));
     return PyObject_IsTrue(p_obj.get());
   }
 
-  template <>
+  template<>
   double Python::Convert<double>::get_value(PyObjectPtr p_obj)
   {
     assert(Custom_PyFloat_Check(p_obj));
     return PyFloat_AsDouble(p_obj.get());
   }
 
-  template <>
+  template<>
   long Python::Convert<long>::get_value(PyObjectPtr p_obj)
   {
 #if (PY_MAJOR_VERSION >= 3)
@@ -67,13 +67,13 @@ namespace Spacy
     return PyLong_AsLong(p_obj.get());
   }
 
-  template <>
+  template<>
   PyObjectPtr Python::Convert<PyObjectPtr>::get_value(PyObjectPtr p_obj)
   {
     return p_obj;
   }
-  
-  template <>
+
+  template<>
   std::string Python::Convert<std::string>::get_value(PyObjectPtr p_obj)
   {
     if (PyUnicode_Check(p_obj.get()))
@@ -90,20 +90,20 @@ namespace Spacy
       assert(0);
     }
   }
-    
-  template <>
+
+  template<>
   PyObjectPtr Python::Convert<bool>::get_object(bool p_val)
   {
     return PyObjectPtr(PyBool_FromLong(p_val));
   }
 
-  template <>
+  template<>
   PyObjectPtr Python::Convert<double>::get_object(double p_val)
   {
     return PyObjectPtr(PyFloat_FromDouble(p_val));
   }
 
-  template <>
+  template<>
   PyObjectPtr Python::Convert<long>::get_object(long p_val)
   {
 #if (PY_MAJOR_VERSION >= 3)
@@ -113,13 +113,13 @@ namespace Spacy
 #endif
   }
 
-  template <>
+  template<>
   PyObjectPtr Python::Convert<PyObjectPtr>::get_object(PyObjectPtr p_val)
   {
     return p_val;
   }
 
-  template <>
+  template<>
   PyObjectPtr Python::Convert<std::string>::get_object(std::string p_val)
   {
     return PyObjectPtr(PyUnicode_FromStringAndSize(p_val.c_str(), p_val.size()));

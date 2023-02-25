@@ -21,7 +21,7 @@ namespace Spacy
   class Vocab
   {
     friend Nlp;
-    
+
   public:
     virtual ~Vocab();
 

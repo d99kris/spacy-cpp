@@ -35,7 +35,7 @@ int main()
       unittest::ExpectEqual(long, counts[nlp.vocab().strings().add("orange")], 1);
       unittest::ExpectEqual(long, counts[nlp.vocab().strings().add("banana")], 1);
     }
-    
+
     // Doc::ents
     {
       Spacy::Doc doc = nlp.parse("Mr. Best flew to New York on Saturday morning.");
@@ -43,7 +43,7 @@ int main()
       unittest::ExpectEqual(std::string, ents[0].label_(), "PERSON");
       unittest::ExpectEqual(std::string, ents[0].text(), "Best");
     }
-    
+
     // Doc::has_vector
     {
       Spacy::Doc doc = nlp.parse("I like apples");
@@ -69,7 +69,7 @@ int main()
       unittest::ExpectEqual(std::string, chunks[0].text(), "A phrase");
       unittest::ExpectEqual(std::string, chunks[1].text(), "another phrase");
     }
-    
+
     // Doc::sentiment
     {
       Spacy::Doc doc = nlp.parse("I like apples");
@@ -94,7 +94,7 @@ int main()
       double oranges_apples = oranges.similarity(apples);
       unittest::ExpectEqual(double, apples_oranges, oranges_apples);
     }
-    
+
     // Doc::text
     {
       Spacy::Doc doc = nlp.parse("I like apples");
@@ -122,7 +122,7 @@ int main()
       unittest::ExpectTrue(doc1.vector_norm() != doc2.vector_norm());
     }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

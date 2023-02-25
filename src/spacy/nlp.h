@@ -22,7 +22,7 @@ namespace Spacy
   class Nlp
   {
     friend Spacy;
-    
+
   public:
     virtual ~Nlp();
 

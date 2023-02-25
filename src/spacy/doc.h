@@ -23,7 +23,7 @@ namespace Spacy
   class Doc
   {
     friend Nlp;
-    
+
   public:
     virtual ~Doc();
 
@@ -40,7 +40,7 @@ namespace Spacy
     std::string text_with_ws() const;
     std::vector<Token> tokens() const;
     double vector_norm() const;
-    
+
   private:
     Doc(PyObjectPtr p_doc);
 

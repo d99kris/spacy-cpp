@@ -27,7 +27,7 @@ int main()
       Spacy::StringStore strings = vocab.strings();
     }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

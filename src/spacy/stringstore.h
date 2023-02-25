@@ -20,7 +20,7 @@ namespace Spacy
   class StringStore
   {
     friend Vocab;
-    
+
   public:
     virtual ~StringStore();
 

@@ -20,6 +20,7 @@ BUILD="0"
 TESTS="0"
 DOC="0"
 INSTALL="0"
+SRC="0"
 EXAMPLES="0"
 case "${1%/}" in
   deps)
@@ -49,6 +50,10 @@ case "${1%/}" in
     EXAMPLES="1"
     ;;
 
+  src)
+    SRC="1"
+    ;;
+
   all)
     DEPS="1"
     BUILD="1"
@@ -67,6 +72,7 @@ case "${1%/}" in
     echo "  install   - perform build and install"
     echo "  examples  - build and run examples"
     echo "  all       - perform all actions above"
+    echo "  src       - perform source code reformatting"
     exit 1
     ;;
 esac
@@ -86,6 +92,12 @@ if [[ "${DEPS}" == "1" ]]; then
   else
     exiterr "deps failed (unsupported os ${OS}), exiting."
   fi
+fi
+
+# src
+if [[ "${SRC}" == "1" ]]; then
+  uncrustify -c etc/uncrustify.cfg --replace --no-backup src/spacy/*.* tests/*.* || \
+    exiterr "unrustify failed, exiting."
 fi
 
 # build

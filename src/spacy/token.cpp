@@ -24,7 +24,7 @@ namespace Spacy
 
   bool Token::check_flag(long p_attr) const
   {
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({Python::get_object<long>(p_attr)});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ Python::get_object<long>(p_attr) });
     return Python::call_method<bool>(m_token, "check_flag", args);
   }
 
@@ -37,7 +37,7 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_token, "cluster");
   }
-    
+
   long Token::dep() const
   {
     return Python::get_attr_value<long>(m_token, "dep");
@@ -147,22 +147,22 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_token, "lang");
   }
-      
+
   std::string Token::lang_() const
   {
     return Python::get_attr_value<std::string>(m_token, "lang_");
   }
- 
+
   long Token::lemma() const
   {
     return Python::get_attr_value<long>(m_token, "lemma");
   }
-    
+
   std::string Token::lemma_() const
   {
     return Python::get_attr_value<std::string>(m_token, "lemma_");
   }
- 
+
   bool Token::like_email() const
   {
     return Python::get_attr_value<bool>(m_token, "like_email");
@@ -182,12 +182,12 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_token, "lower");
   }
-    
+
   std::string Token::lower_() const
   {
     return Python::get_attr_value<std::string>(m_token, "lower_");
   }
- 
+
   MorphAnalysis Token::morph() const
   {
     return Python::get_attr_obj<MorphAnalysis>(m_token, "morph");
@@ -195,7 +195,7 @@ namespace Spacy
 
   Token Token::nbor(long p_i /* = 1 */) const
   {
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({Python::get_object<long>(p_i)});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ Python::get_object<long>(p_i) });
     return Token(Python::call_method<PyObjectPtr>(m_token, "nbor", args));
   }
 
@@ -203,12 +203,12 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_token, "norm");
   }
-    
+
   std::string Token::norm_() const
   {
     return Python::get_attr_value<std::string>(m_token, "norm_");
   }
- 
+
   long Token::orth() const
   {
     return Python::get_attr_value<long>(m_token, "orth");
@@ -223,12 +223,12 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_token, "pos");
   }
-      
+
   std::string Token::pos_() const
   {
     return Python::get_attr_value<std::string>(m_token, "pos_");
   }
- 
+
   double Token::prob() const
   {
     return Python::get_attr_value<double>(m_token, "prob");
@@ -238,7 +238,7 @@ namespace Spacy
   {
     return Python::get_attr_value<double>(m_token, "rank");
   }
-    
+
   double Token::sentiment() const
   {
     return Python::get_attr_value<double>(m_token, "sentiment");
@@ -248,27 +248,27 @@ namespace Spacy
   {
     return Python::get_attr_value<long>(m_token, "shape");
   }
-    
+
   std::string Token::shape_() const
   {
     return Python::get_attr_value<std::string>(m_token, "shape_");
   }
- 
+
   long Token::tag() const
   {
     return Python::get_attr_value<long>(m_token, "tag");
   }
-      
+
   std::string Token::tag_() const
   {
     return Python::get_attr_value<std::string>(m_token, "tag_");
   }
- 
+
   std::string Token::text() const
   {
     return Python::get_attr_value<std::string>(m_token, "text");
   }
-    
+
   std::string Token::text_with_ws() const
   {
     return Python::get_attr_value<std::string>(m_token, "text_with_ws");

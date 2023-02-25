@@ -30,7 +30,7 @@ int main()
       unittest::ExpectTrue(apple != orange);
     }
   }
-  catch(const std::exception& ex)
+  catch (const std::exception& ex)
   {
     std::cout << ex.what() << std::endl;
     rv = 1;

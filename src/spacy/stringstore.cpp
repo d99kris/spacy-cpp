@@ -22,7 +22,7 @@ namespace Spacy
   long StringStore::add(const std::string& p_str) const
   {
     PyObjectPtr str(Python::get_object<std::string>(p_str));
-    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({str});
+    std::vector<PyObjectPtr> args = std::vector<PyObjectPtr>({ str });
     PyObjectPtr return_value(Python::call_method<PyObjectPtr>(m_stringstore, "add", args));
     return Python::get_value<long>(return_value);
   }
