@@ -92,7 +92,6 @@ Include header (convenience header including all modules):
 
     #include <spacy/spacy>
 
-
 Header-only Library
 -------------------
 Copy the src/spacy directory to the source directory of your project. Then
@@ -102,13 +101,31 @@ all headers):
     #define SPACY_HEADER_ONLY
     #include <spacy/spacy>
 
-
 CMake Usage
 -----------
 The source tree includes two CMake project examples:
 
 - [Using spacy-cpp as header-only library](examples/cmake-add-subdirectory-hdr)
 - [Using spacy-cpp as shared library](examples/cmake-add-subdirectory-lib)
+
+
+FAQ
+===
+
+### No module named spacy. Why does spacy-cpp not find spacy?
+If a system has more than one Python installation, each of the installations
+will have its own set of pip-installed Python packages. One must ensure that
+spacy is installed for the Python version used by spacy-cpp (alternatively
+point spacy-cpp to the desired Python installation). When building spacy-cpp
+using CMake (example: `./make.sh tests`) the Python version used will be
+output, for example `PYTHON_EXECUTABLE="/usr/local/bin/python3.11"`. Use this
+interpreter to ensure spacy works correctly in Python, example:
+`/usr/local/bin/python3.11 ./examples/python-spacy-usage.py`. If not working,
+use this Python version to install spacy and a language model:
+
+    /usr/local/bin/python3.11 -m pip install -U spacy
+    /usr/local/bin/python3.11 -m spacy download en_core_web_sm
+
 
 API Documentation
 =================
