@@ -10,9 +10,9 @@ on:
 
 jobs:
   linux-build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v5
     - name: Build Linux
       run: ./make.sh all
