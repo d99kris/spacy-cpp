@@ -2,7 +2,7 @@
 
 # make.sh
 #
-# Copyright (C) 2020-2023 Kristofer Berggren
+# Copyright (C) 2020-2026 Kristofer Berggren
 # All rights reserved.
 #
 # See LICENSE for redistribution information.
@@ -78,17 +78,18 @@ case "${1%/}" in
 esac
 
 # deps
+# preshed 3.0.14 breaks spacy 3.8.x model load (OverflowError in Tokenizer._flush_specials)
 if [[ "${DEPS}" == "1" ]]; then
   OS="$(uname)"
   if [ "${OS}" == "Linux" ]; then
     DISTRO="$(lsb_release -i | awk -F':\t' '{print $2}')"
     if [[ "${DISTRO}" == "Ubuntu" ]]; then
-      pip3 install -U spacy && python3 -m spacy download en_core_web_sm || exiterr "deps failed (linux), exiting."
+      pip3 install -U spacy "preshed<3.0.14" && python3 -m spacy download en_core_web_sm || exiterr "deps failed (linux), exiting."
     else
       exiterr "deps failed (unsupported linux distro ${DISTRO}), exiting."
     fi
   elif [ "${OS}" == "Darwin" ]; then
-    pip3 install -U spacy && python3 -m spacy download en_core_web_sm || exiterr "deps failed (mac), exiting."
+    pip3 install -U spacy "preshed<3.0.14" && python3 -m spacy download en_core_web_sm || exiterr "deps failed (mac), exiting."
   else
     exiterr "deps failed (unsupported os ${OS}), exiting."
   fi
