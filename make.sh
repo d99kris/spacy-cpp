@@ -109,7 +109,11 @@ if [[ "${BUILD}" == "1" ]]; then
   elif [ "${OS}" == "Darwin" ]; then
     MAKEARGS="-j$(sysctl -n hw.ncpu)"
   fi
-  mkdir -p build && cd build && cmake -DSPACYCPP_BUILD_TESTS=ON .. && make ${MAKEARGS} && cd .. || exiterr "build failed, exiting."
+  CMAKEARGS=""
+  if [ -n "$(command -v python3)" ]; then
+    CMAKEARGS="-DPython3_EXECUTABLE=$(command -v python3)"
+  fi
+  mkdir -p build && cd build && cmake ${CMAKEARGS} -DSPACYCPP_BUILD_TESTS=ON .. && make ${MAKEARGS} && cd .. || exiterr "build failed, exiting."
 fi
 
 # tests
@@ -128,7 +132,11 @@ if [[ "${INSTALL}" == "1" ]]; then
   if [ "${OS}" == "Linux" ]; then
     cd build && sudo make install && cd .. || exiterr "install failed (linux), exiting."
   elif [ "${OS}" == "Darwin" ]; then
-    cd build && make install && cd .. || exiterr "install failed (mac), exiting."
+    GHSUDO=""
+    if [[ "${GITHUB_ACTIONS}" == "true" ]]; then
+      GHSUDO="sudo"
+    fi
+    cd build && ${GHSUDO} make install && cd .. || exiterr "install failed (mac), exiting."
   else
     exiterr "install failed (unsupported os ${OS}), exiting."
   fi
@@ -143,14 +151,18 @@ if [[ "${EXAMPLES}" == "1" ]]; then
   elif [ "${OS}" == "Darwin" ]; then
     MAKEARGS="-j$(sysctl -n hw.ncpu)"
   fi
+  CMAKEARGS=""
+  if [ -n "$(command -v python3)" ]; then
+    CMAKEARGS="-DPython3_EXECUTABLE=$(command -v python3)"
+  fi
 
   BASEDIR="$(pwd)"
 
   rm -f examples/cmake-add-subdirectory-*/spacy-cpp || exiterr "example pre-cleanup failed, exiting."
 
-  cd examples/cmake-add-subdirectory-hdr && ln -s ../.. spacy-cpp && mkdir -p build && cd build && cmake .. && make ${MAKEARGS} && ./exprog1 > /dev/null && cd ${BASEDIR} || exiterr "example failed, exiting."
+  cd examples/cmake-add-subdirectory-hdr && ln -s ../.. spacy-cpp && mkdir -p build && cd build && cmake ${CMAKEARGS} .. && make ${MAKEARGS} && ./exprog1 > /dev/null && cd ${BASEDIR} || exiterr "example failed, exiting."
 
-  cd examples/cmake-add-subdirectory-lib && ln -s ../.. spacy-cpp && mkdir -p build && cd build && cmake .. && make ${MAKEARGS} && ./exprog2 > /dev/null && cd ${BASEDIR} || exiterr "example failed, exiting."
+  cd examples/cmake-add-subdirectory-lib && ln -s ../.. spacy-cpp && mkdir -p build && cd build && cmake ${CMAKEARGS} .. && make ${MAKEARGS} && ./exprog2 > /dev/null && cd ${BASEDIR} || exiterr "example failed, exiting."
 fi
 
 # exit

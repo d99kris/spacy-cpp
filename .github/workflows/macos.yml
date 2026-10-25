@@ -14,5 +14,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v5
+    - name: Setup Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: "3.14"
     - name: Build macOS
+      env:
+        PIP_BREAK_SYSTEM_PACKAGES: "1"
+        PIP_USER: "1"
       run: ./make.sh all
