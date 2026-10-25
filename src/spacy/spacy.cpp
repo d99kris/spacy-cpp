@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017 Kristofer Berggren
+// Copyright (C) 2017-2026 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -26,12 +26,20 @@ namespace Spacy
   {
     if (m_spacy.get() == nullptr)
     {
+      const bool not_found = PyErr_ExceptionMatches(PyExc_ImportError);
+      const std::string error = Python::get_error();
+      if (!not_found)
+      {
+        throw std::runtime_error("Failed to import spacy (" + error + ")");
+      }
+
 #ifdef PYTHON_EXECUTABLE
       const std::string interpreter = PYTHON_EXECUTABLE;
 #else
       const std::string interpreter = "python3";
 #endif
-      throw std::runtime_error("No module named spacy. Try: " + interpreter + " -m pip install -U spacy");
+      throw std::runtime_error("No module named spacy (" + error + "). "
+                               "Try: " + interpreter + " -m pip install -U spacy");
     }
   }
 
@@ -46,12 +54,20 @@ namespace Spacy
     PyObjectPtr nlp(Python::call_method<PyObjectPtr>(m_spacy, "load", args));
     if (nlp.get() == nullptr)
     {
+      // spacy raises OSError when model is not found, any other error is a load failure
+      const bool not_found = PyErr_ExceptionMatches(PyExc_OSError);
+      const std::string error = Python::get_error();
+      if (!not_found)
+      {
+        throw std::runtime_error("Failed to load model '" + p_model + "' (" + error + ")");
+      }
+
 #ifdef PYTHON_EXECUTABLE
       const std::string interpreter = PYTHON_EXECUTABLE;
 #else
       const std::string interpreter = "python3";
 #endif
-      throw std::runtime_error("Can't find model '" + p_model + "'. "
+      throw std::runtime_error("Can't find model '" + p_model + "' (" + error + "). "
                                "Try: " + interpreter + " -m spacy download " + p_model);
     }
     return nlp;

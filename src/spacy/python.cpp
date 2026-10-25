@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017-2020 Kristofer Berggren
+// Copyright (C) 2017-2026 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -123,6 +123,50 @@ namespace Spacy
   PyObjectPtr Python::Convert<std::string>::get_object(std::string p_val)
   {
     return PyObjectPtr(PyUnicode_FromStringAndSize(p_val.c_str(), p_val.size()));
+  }
+
+  std::string Python::get_error()
+  {
+    // fetch and clear current python exception, return it as "Type: message"
+#if (PY_VERSION_HEX >= 0x030C0000)
+    PyObjectPtr value(PyErr_GetRaisedException());
+    PyObjectPtr type((value.get() != nullptr) ? PyObject_Type(value.get()) : nullptr);
+#else
+    PyObject* raw_type = nullptr;
+    PyObject* raw_value = nullptr;
+    PyObject* raw_traceback = nullptr;
+    PyErr_Fetch(&raw_type, &raw_value, &raw_traceback);
+    PyErr_NormalizeException(&raw_type, &raw_value, &raw_traceback);
+    PyObjectPtr type(raw_type);
+    PyObjectPtr value(raw_value);
+    PyObjectPtr traceback(raw_traceback);
+#endif
+
+    std::string error;
+    if (type.get() != nullptr)
+    {
+      PyObjectPtr name(PyObject_GetAttrString(type.get(), "__name__"));
+      if (name.get() != nullptr)
+      {
+        error = get_value<std::string>(name);
+      }
+    }
+
+    if (value.get() != nullptr)
+    {
+      PyObjectPtr str(PyObject_Str(value.get()));
+      if (str.get() != nullptr)
+      {
+        const std::string message = get_value<std::string>(str);
+        if (!message.empty())
+        {
+          error += (error.empty() ? "" : ": ") + message;
+        }
+      }
+    }
+
+    PyErr_Clear();
+    return error.empty() ? "unknown error" : error;
   }
 
   bool Python::Custom_PyFloat_Check(PyObjectPtr p_obj)

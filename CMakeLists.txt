@@ -2,14 +2,14 @@
 #
 # URL:      https://github.com/d99kris/spacy-cpp
 #
-# Copyright (C) 2017-2023 Kristofer Berggren
+# Copyright (C) 2017-2026 Kristofer Berggren
 # All rights reserved.
 #
 # spacy-cpp is distributed under the MIT license, see LICENSE for details.
 
 # Project
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
-project(spacy-cpp VERSION 1.08 LANGUAGES CXX)
+project(spacy-cpp VERSION 1.09 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 if(MSVC)
   if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")

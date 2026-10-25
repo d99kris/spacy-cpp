@@ -2,7 +2,7 @@
 //
 // URL:      https://github.com/d99kris/spacy-cpp
 //
-// Copyright (C) 2017-2020 Kristofer Berggren
+// Copyright (C) 2017-2026 Kristofer Berggren
 // All rights reserved.
 //
 // spacy-cpp is distributed under the MIT license, see LICENSE for details.
@@ -152,6 +152,8 @@ namespace Spacy
       PyObjectPtr name(Python::get_object<std::string>(p_name));
       return PyObjectPtr(PyImport_Import(name.get()));
     }
+
+    static std::string get_error();
 
   private:
     Python();
